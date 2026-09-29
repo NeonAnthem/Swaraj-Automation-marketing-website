@@ -42,7 +42,7 @@ export default function CTALink({
   return (
     <button
       className={cn(
-        `relative flex items-center gap-1 w-max text-primary text-nowrap [&>svg]:text-primary [&>svg]:size-4 cursor-pointer font-medium`,
+        `relative flex items-center gap-1 w-max text-foreground text-nowrap [&>svg]:text-foreground [&>svg]:size-4 cursor-pointer font-medium`,
         className,
       )}
       onMouseEnter={() => {

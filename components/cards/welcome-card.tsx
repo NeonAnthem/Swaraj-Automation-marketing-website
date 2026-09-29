@@ -16,14 +16,14 @@ import { IconArrowUpRight } from "@tabler/icons-react";
 
 export default function WelcomeBanner() {
   return (
-    <Card className="welcome-banner relative overflow-hidden border-none bg-primary text-start">
+    <Card className="welcome-banner relative overflow-hidden border-none bg-primary text-start rounded-none! shadow-none!">
       <div
         className="absolute inset-0 z-10 bg-size-[100%] bg-bottom-right bg-no-repeat opacity-50"
         style={{
           backgroundImage: `url('/assets/svg/pattern.svg')`,
         }}
       ></div>
-      <CardContent className="relative z-20 p-6 md:p-10">
+      <CardContent className="relative z-20 p-6 md:p-10 mx-auto container">
         <div className="grid grid-cols-12 items-center gap-6">
           <div className="col-span-12 sm:col-span-7">
             <div className="space-y-6">
@@ -35,7 +35,7 @@ export default function WelcomeBanner() {
                 company. Join us to grow and make an impact.
               </p>
               <Link
-                href="/contact/careers"
+                href="/careers"
                 className={cn(
                   buttonVariants({ variant: "outline" }),
                   "h-12 rounded-xl border-white bg-transparent px-8 font-bold text-white hover:bg-white hover:text-primary",

@@ -17,11 +17,12 @@ export default function NavigationBar() {
     <>
       <NavigationDarkObserver />
       {/* Placeholder Navigation bar */}
-      <div className={"h-12 bg-transparent"}></div>
+      {/* <div className={"h-12 bg-transparent"}></div> */}
       {/* end Placeholder Navigation bar */}
       <NavBar
-        className={cn("", {
+        className={cn("bg-transparent", {
           dark: isDark || activeChildId || isMobileOpen,
+          "bg-background": activeChildId,
         })}
       >
         <NavigationLogo />

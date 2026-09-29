@@ -59,7 +59,7 @@ function BrandMark({ className }: { className?: string }) {
       <Link href="/" aria-label="Neon Anthem" className="inline-flex">
         <CompanyLogo className="h-5 w-auto fill-foreground" />
       </Link>
-      <p className="mt-3 text-sm text-muted-foreground">
+      <p className="mt-3 text-sm text-foreground">
         © <CopyrightYear /> Swaraj Automations.
       </p>
     </div>
@@ -87,6 +87,11 @@ export default function Footer() {
                       className="text-sm text-foreground transition-colors hover:text-muted-foreground"
                     >
                       {link.label}
+                      {link.tag && (
+                        <span className="ml-2 text-xs text-foreground uppercase">
+                          - {link.tag}
+                        </span>
+                      )}
                     </Link>
                   </li>
                 ))}

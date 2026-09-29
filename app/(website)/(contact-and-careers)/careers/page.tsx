@@ -3,7 +3,7 @@ import { Section } from "@/components/features/section/index.section";
 
 export default function CareersPage() {
   return (
-    <Section>
+    <Section spacing={"none"} className={""}>
       <CareersPageSection />
     </Section>
   );

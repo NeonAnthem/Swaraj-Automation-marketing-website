@@ -69,10 +69,8 @@ export default function ContactPage() {
       </Section>
 
       {/* Careers Card */}
-      <Section>
-        <SectionContent>
-          <WelcomeBanner />
-        </SectionContent>
+      <Section spacing={"none"}>
+        <WelcomeBanner />
       </Section>
       {/* end Careers Card */}
     </>

@@ -21,7 +21,7 @@ export default function NavigationCTA() {
 
       {/* Primary Navigation */}
       <Link href={primaryCTA.href}>
-        <Button>{primaryCTA.label}</Button>
+        <Button className="">{primaryCTA.label}</Button>
       </Link>
       {/* end Primary Navigation */}
     </>
