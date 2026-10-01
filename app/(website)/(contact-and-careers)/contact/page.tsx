@@ -28,12 +28,12 @@ export default function ContactPage() {
               {
                 icon: IconMail,
                 label: "Email",
-                value: "hello@swarajautomation.in",
+                value: "shashank@swarajautomation.in",
               },
               {
                 icon: IconPhone,
                 label: "Phone",
-                value: "+91 12345-67890",
+                value: "+91 98225-03630",
               },
               {
                 icon: IconMapPin,

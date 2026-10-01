@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import CompanyLogo from "@/components/vectors/company.logo";
 import {
   FOOTER_BOTTOM_LINKS,
@@ -25,7 +26,7 @@ const socials: {
   },
   {
     label: "Linkedin",
-    href: "https://www.linkedin.com/company/neon-anthem/",
+    href: "https://www.linkedin.com/company/swaraj-automation---india/home/",
     icon: <IconBrandLinkedinFilled />,
   },
   {
@@ -62,6 +63,27 @@ function BrandMark({ className }: { className?: string }) {
       <p className="mt-3 text-sm text-foreground">
         © <CopyrightYear /> Swaraj Automations.
       </p>
+
+      {/* Location */}
+      <div className="mt-3">
+        <p className="text-sm">
+          Plot no. 13, Gat no. 281/1, Kasar Amboli, near HDFC Bank, Pirangut,
+          412108
+        </p>
+      </div>
+      {/* End Location */}
+      {/* GST */}
+      <div className="mt-3">
+        <p className="text-sm">GSTIN: 27ADTPD0929M1Z4</p>
+      </div>
+      {/* end GST */}
+      {/* Get in Touch */}
+      <div className="mt-4">
+        <Link href="/contact">
+          <Button>Contact us</Button>
+        </Link>
+      </div>
+      {/* end Get in Touch */}
     </div>
   );
 }
@@ -126,7 +148,7 @@ export default function Footer() {
                 href={social.href}
                 target="_blank"
                 aria-label={social.label}
-                className="inline-block text-muted-foreground transition-colors hover:text-foreground"
+                className="inline-block text-foreground transition-colors hover:text-foreground"
               >
                 {social.icon}
               </Link>
@@ -176,6 +198,11 @@ export default function Footer() {
           // className={"h-auto w-full *:fill-[url(#footer-logo-gradient)]"}
           className={"h-auto w-full *:fill-white/80"}
         /> */}
+        <div className="flex items-center justify-center w-full">
+          <p className="tracking-tighter leading-[0.98] text-[300px] w-max">
+            Since 1997
+          </p>
+        </div>
       </div>
       {/* end Neon Anthem Footer Bleed Logo */}
     </footer>
