@@ -7,11 +7,6 @@ const NAVMENUS: INavbarItems[] = [
     label: "Home",
   },
   {
-    id: "about",
-    position: "a",
-    label: "About us",
-  },
-  {
     id: "products",
     position: "a",
     label: "Products",
@@ -21,37 +16,28 @@ const NAVMENUS: INavbarItems[] = [
         position: "a",
         span: 1,
         heading: "By Industries",
-        children:
-          // (await getServicesByCategories("website"))?.map((s) => ({
-          //   label: s.name,
-          //   href: s.slug,
-          // })) ?? [],
-          [
-            {
-              label: "Deep hole Gun Drilling Machine",
-              href: "#",
-            },
-            {
-              label: "Pellet Die Gun Drilling Machine",
-              href: "/premium-web-design",
-            },
-            {
-              label: "Deep Drilling Machine",
-              href: "#",
-            },
-            {
-              label: "Countering Machine",
-              href: "#",
-            },
-            {
-              label: "Dimpling Machine",
-              href: "#",
-            },
-            {
-              label: "Slide Units",
-              href: "#",
-            },
-          ],
+        children: [
+          {
+            label: "Deep hole Gun Drilling Machine",
+            href: "#",
+          },
+          {
+            label: "Pellet Die Gun Drilling Machine",
+            href: "/premium-web-design",
+          },
+          {
+            label: "Deep Drilling Machine",
+            href: "#",
+          },
+          {
+            label: "Countering Machine",
+            href: "#",
+          },
+          {
+            label: "Dimpling Machine",
+            href: "#",
+          },
+        ],
       },
       {
         contentType: "list",
@@ -75,10 +61,6 @@ const NAVMENUS: INavbarItems[] = [
             label: "Plano Machine",
             href: "/website-cro",
           },
-          {
-            label: "Electrical Drivers",
-            href: "/#",
-          },
         ],
       },
       {
@@ -88,8 +70,8 @@ const NAVMENUS: INavbarItems[] = [
         span: 1,
         children: [
           {
-            label: "VFD",
-            href: "/cro-agency",
+            label: "Slide Units",
+            href: "/services/slide-units",
           },
         ],
       },
@@ -131,70 +113,6 @@ const NAVMENUS: INavbarItems[] = [
           {
             label: "Gun Drilling Services",
             href: "/services/gun-drilling-services",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: "regions",
-    position: "c",
-    label: "Regions",
-    child: [
-      {
-        contentType: "list",
-        position: "a",
-        span: 3,
-        heading: "Regions",
-        children: [
-          {
-            label: "United States",
-            href: "/US",
-          },
-          {
-            label: "India",
-            href: "/in",
-          },
-          {
-            label: "Others",
-            href: "/ot",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: "blogs",
-    position: "d",
-    label: "Resources",
-    href: "/blogs",
-    child: [
-      {
-        contentType: "banner",
-        position: "a",
-        span: 2,
-        tag: "cms:blogs:0",
-      },
-      {
-        contentType: "list",
-        heading: "Resources",
-        position: "b",
-        span: 1,
-        children: [
-          {
-            label: "Free Guide to GTM",
-            href: "#",
-            description: "Free guide to GTM Strategy",
-          },
-          {
-            label: "Free Guide to Website Redesign",
-            href: "#",
-            description: "Free guide to GTM Strategy",
-          },
-          {
-            label: "Free Guide to AI for Web",
-            href: "#",
-            description: "Free guide to GTM Strategy",
           },
         ],
       },

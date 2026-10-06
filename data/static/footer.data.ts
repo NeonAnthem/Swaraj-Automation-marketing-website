@@ -53,7 +53,16 @@ export const FOOTER_LINK_COLUMNS: IFooterColumn[] = [
   {
     id: "regions",
     heading: "Regions",
-    links: flattenNavGroupLinks("regions"),
+    links: [
+      {
+        label: "Global",
+        href: "/regions/global",
+      },
+      {
+        label: "Maharashtra",
+        href: "/regions/maharashtra",
+      },
+    ],
   },
 ];
 
