@@ -2,19 +2,9 @@ import Footer from "@/components/features/footer/footer";
 import NavigationBar from "@/components/features/navigation/components/bar.navigation";
 import NavigationProvider from "@/components/features/navigation/providers/index.provider";
 import { NavbarProvider } from "@/components/ui/nav-items";
+import { archivoFont, geistMono } from "@/lib/fonts";
 import type { Metadata } from "next";
-import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
-
-const interFont = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Swaraj Automations",
@@ -29,7 +19,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${interFont.variable} ${geistMono.variable} ${interFont.className} h-full antialiased`}
+      className={`${archivoFont.variable} ${geistMono.variable} ${archivoFont.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <NavigationProvider>

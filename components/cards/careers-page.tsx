@@ -19,7 +19,7 @@ export default function CareersPageSection() {
                 Work with us
               </h1>
               <p className="mt-3 whitespace-nowrap text-base leading-snug text-black/60 dark:text-white/55">
-                Brainstrom in chat, build in cowork
+                Brainstorm in chat, build in cowork
               </p>
             </div>
 
@@ -34,7 +34,7 @@ export default function CareersPageSection() {
               </Field>
               <Field>
                 <Label>Phone</Label>
-                <Input type="phone" />
+                <Input type="tel" />
               </Field>
               <Field>
                 <Label>Message</Label>

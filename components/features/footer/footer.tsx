@@ -79,9 +79,10 @@ function BrandMark({ className }: { className?: string }) {
       {/* end GST */}
       {/* Get in Touch */}
       <div className="mt-4">
-        <Link href="/contact">
-          <Button>Contact us</Button>
-        </Link>
+        <Button
+          nativeButton={false}
+          render={<Link href="/contact">Contact us</Link>}
+        />
       </div>
       {/* end Get in Touch */}
     </div>
