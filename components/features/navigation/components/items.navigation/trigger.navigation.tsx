@@ -12,9 +12,10 @@ function NavigationItemTrigger({ ...item }: INavbarItems) {
 
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
-  if (!item.child)
+  if (item?.href)
     return (
       <NavigationMenu.Link
+        href={item?.href}
         className={
           "pr-8 relative flex items-center gap-1 w-max text-white text-nowrap [&>svg]:text-foreground [&>svg]:size-4 cursor-pointer font-medium"
         }

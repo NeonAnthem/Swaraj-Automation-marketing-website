@@ -5,73 +5,74 @@ const NAVMENUS: INavbarItems[] = [
     id: "home",
     position: "a",
     label: "Home",
+    href: "/",
   },
   {
-    id: "products",
+    id: "machines",
     position: "a",
-    label: "Products",
+    label: "Machines",
     child: [
       {
         contentType: "list",
         position: "a",
         span: 1,
-        heading: "By Industries",
+        heading: "Category A",
         children: [
           {
             label: "Deep hole Gun Drilling Machine",
-            href: "#",
+            href: "/machines/deep-hole-gun-drilling-machine",
           },
           {
             label: "Pellet Die Gun Drilling Machine",
-            href: "/premium-web-design",
+            href: "/machines/pellet-die-gun-drilling-machine",
           },
           {
             label: "Deep Drilling Machine",
-            href: "#",
+            href: "/machines/deep-drilling-machine",
           },
           {
             label: "Countering Machine",
-            href: "#",
+            href: "/machines/countering-machine",
           },
           {
             label: "Dimpling Machine",
-            href: "#",
+            href: "/machines/dimpling-machine",
           },
         ],
       },
       {
         contentType: "list",
-        heading: "Branding & Positioning Services",
+        heading: "Category B",
         position: "b",
         span: 1,
         children: [
           {
             label: "Drilling Reaming Machine",
-            href: "/#",
+            href: "/machines/drilling-reaming-machine",
           },
           {
             label: "Special Purpose Drilling Machine",
-            href: "/special-purpose-drilling-machine",
+            href: "/machines/special-purpose-drilling-machine",
           },
           {
             label: "Gantry Machine",
-            href: "/gtm-strategy",
+            href: "/machines/gantry-machine",
           },
           {
             label: "Plano Machine",
-            href: "/website-cro",
+            href: "/machines/plano-machine",
           },
         ],
       },
       {
         contentType: "list",
-        heading: "Infrastructure",
+        heading: "Category C",
         position: "c",
         span: 1,
         children: [
           {
             label: "Slide Units",
-            href: "/services/slide-units",
+            href: "/machines/slide-units",
           },
         ],
       },
@@ -92,6 +93,12 @@ const NAVMENUS: INavbarItems[] = [
     ],
   },
   {
+    id: "solutions",
+    label: "Solutions",
+    position: "b",
+    child: [],
+  },
+  {
     id: "services",
     position: "b",
     label: "Service",
@@ -100,7 +107,7 @@ const NAVMENUS: INavbarItems[] = [
         contentType: "list",
         position: "ab",
         span: 3,
-        heading: "Product-Led Growth",
+        heading: "Core Services",
         children: [
           {
             label: "Retrofitting & Reconditioning",

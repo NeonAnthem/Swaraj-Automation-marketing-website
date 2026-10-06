@@ -1,9 +1,9 @@
+import MetricsSection from "@/components/cards/metrics-section";
+import { ProductSlider } from "@/components/cards/product.slider";
 import {
   IShowcaseSliderItem,
   ShowcaseSlider,
 } from "@/components/cards/showcase.slider";
-import FeaturedSectionStats from "@/components/cards/stats";
-import { TeamSection } from "@/components/cards/teams-1";
 import Timeline from "@/components/cards/timeline";
 import { CinematicLogoCloud } from "@/components/cinematic-logo-cloud";
 import {
@@ -16,12 +16,57 @@ import {
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
+  const demoProducts: IShowcaseSliderItem[] = [
+    {
+      id: "gun-drilling-machine",
+      title: "Gun Drilling Machine",
+      description:
+        "High-precision gun drilling machines for deep hole drilling applications.",
+      href: "#",
+      image: "/assets/images/x_DSC_0011.jpg",
+    },
+    {
+      id: "pellet-die-gun-drilling-machine",
+      title: "Pellet Die Gun Drilling Machine",
+      description:
+        "Specialized gun drilling machines for pellet die applications.",
+      href: "#",
+      image: "/assets/images/x_DSC_0011.jpg",
+    },
+
+    {
+      id: "deep-drilling-machine",
+      title: "Deep Drilling Machine",
+      description:
+        "Advanced deep drilling machines for precise and efficient deep hole drilling.",
+      href: "#",
+      image: "/assets/images/x_DSC_0011.jpg",
+    },
+    {
+      id: "cylindrical-grinding-machine",
+      title: "Cylindrical Grinding Machine",
+      description:
+        "Precision cylindrical grinding machines for accurate surface finishing.",
+      href: "#",
+      image: "/assets/images/x_DSC_0011.jpg",
+    },
+    {
+      id: "explore-more-products",
+      title: "Explore More Products",
+      type: "cta",
+      description:
+        "Discover our full range of high-precision machining solutions for various industries.",
+      href: "#",
+      image: "/assets/images/explore-more-products.jpg",
+    },
+  ];
+
   const demoIndustries: IShowcaseSliderItem[] = [
     {
       id: "cta",
       image: "",
       type: "cta",
-      title: "Get in touch",
+      title: "Talk to us on how we can help your business",
       description:
         "Reach out to us for inquiries, quotes, or any assistance you may need.",
       href: "#",
@@ -52,7 +97,7 @@ export default function Home() {
     },
     {
       id: "healthcare",
-      title: "Healthcare",
+      title: "Implants and Instruments",
       description:
         "Precision parts manufactured to strict quality standards for critical healthcare applications.",
       href: "#",
@@ -119,6 +164,7 @@ export default function Home() {
             muted
             loop
             className="absolute inset-0 w-full h-full object-cover object-left"
+            playsInline
             src="/assets/videos/hero.webm"
           />
 
@@ -159,63 +205,75 @@ export default function Home() {
 
       {/* Trusted Teams */}
 
-      <Section>
+      <Section className="bg-zinc-50/50 dark:bg-zinc-950">
         <SectionContent>
           <CinematicLogoCloud
             eyebrow="Trusted by teams at"
             clients={[
               {
-                name: "OpenAI",
+                name: "Phoenix Engineering",
                 text: true,
                 className: "text-xl font-semibold",
               },
               {
-                name: "hello patient",
+                name: "R K Feed Equipments",
                 text: true,
-                className: "text-lg font-medium lowercase",
+                className: "text-lg font-medium ",
               },
-              { name: "granola", text: true, className: "text-lg font-medium" },
               {
-                name: "character.ai",
+                name: "Meta Forge Engineering",
                 text: true,
                 className: "text-lg font-medium",
               },
               {
-                name: "ORACLE",
+                name: "JAL Precision",
                 text: true,
-                className:
-                  "text-lg font-bold tracking-wide text-red-600 dark:text-red-500",
+                className: "text-lg font-medium",
               },
               {
-                name: "PORTOLA",
+                name: "Thermax",
+                text: true,
+                className:
+                  "text-lg uppercase font-bold tracking-wide text-red-600 dark:text-red-500",
+              },
+              {
+                name: "Elecon Engineering",
                 text: true,
                 className: "text-lg font-semibold tracking-wide",
               },
-              { name: "Accel", text: true, className: "text-xl font-semibold" },
-              { name: "Bloomberg", text: true, className: "text-lg font-bold" },
               {
-                name: "FORBES",
+                name: "TD Williamson",
+                text: true,
+                className: "text-xl font-semibold",
+              },
+              {
+                name: "Sai Feed Equipments",
+                text: true,
+                className: "text-lg font-bold",
+              },
+              {
+                name: "Kimako industries",
                 text: true,
                 className: "text-lg font-bold font-serif tracking-wide",
               },
               {
-                name: "SoftBank",
+                name: "Jay Fe Cylinders Limited",
                 text: true,
                 className: "text-lg font-semibold",
               },
               {
-                name: "WIRED",
+                name: "Navya Industries",
                 text: true,
                 className: "text-lg font-black tracking-tight",
               },
-              { name: "hulu", text: true, className: "text-xl font-bold" },
+              { name: "Starways", text: true, className: "text-xl font-bold" },
               {
-                name: "YouTube",
+                name: "Kirloskar Pneumatic",
                 text: true,
                 className: "text-lg font-semibold",
               },
               {
-                name: "NETFLIX",
+                name: "Perfect Gears",
                 text: true,
                 className: "text-lg font-bold tracking-widest",
               },
@@ -231,7 +289,7 @@ export default function Home() {
           <SectionTitle className="font-medium tracking-tighter">
             Industries We Serve
           </SectionTitle>
-          <SectionDescription className="text-muted-foreground">
+          <SectionDescription className="text-muted-foreground tracking-tight">
             We Design Solutions for a Wide Range of Industries & Sectors across
             the fastest growing markets
           </SectionDescription>
@@ -245,23 +303,21 @@ export default function Home() {
       {/* end Industries We Serve */}
       {/* Stats */}
       <Section>
-        <FeaturedSectionStats />
-      </Section>
-      {/* end Stats */}
-
-      {/* Values Section */}
-      <Section>
-        <SectionHeader>
-          <SectionTitle className="font-medium tracking-tighter">
+        <SectionHeader alignment={"center"}>
+          {/* <SectionTitle className="font-medium tracking-tighter">
             Our Core Values
-          </SectionTitle>
-          <SectionDescription className="text-muted-foreground">
+          </SectionTitle> */}
+          {/* <SectionDescription className="text-muted-foreground">
             We are committed to delivering excellence through our core values
             that drive our innovation and customer satisfaction.
-          </SectionDescription>
+          </SectionDescription> */}
         </SectionHeader>
+        <SectionContent>
+          <MetricsSection />
+        </SectionContent>
+        {/* <FeaturedSectionStats /> */}
       </Section>
-      {/* end Values section */}
+      {/* end Stats */}
 
       {/* Featured Products */}
       <Section>
@@ -274,14 +330,30 @@ export default function Home() {
             to quality and innovation.
           </SectionDescription>
         </SectionHeader>
-        <ShowcaseSlider items={demoIndustries} />
+        <ProductSlider items={demoProducts} />
       </Section>
       {/* end Featured Products */}
 
+      {/* Image Thumbnails Section */}
+      {/* <Section>
+        <SectionHeader>
+          <SectionTitle className="tracking-tighter">
+            Machines Gallery
+          </SectionTitle>
+          <SectionDescription className="text-muted-foreground">
+            Browse through our collection of machines and equipment.
+          </SectionDescription>
+        </SectionHeader>
+        <SectionContent>
+          <ThumbnailsCarousal />
+        </SectionContent>
+      </Section> */}
+      {/* end Image Thumbnails Section */}
+
       {/* Teams Section */}
-      <Section>
+      {/* <Section>
         <TeamSection />
-      </Section>
+      </Section> */}
       {/* end Teams Section */}
 
       {/* Timeline Section */}
@@ -294,6 +366,29 @@ export default function Home() {
         />
       </Section>
       {/* end Timeline Section */}
+
+      {/* CTA section */}
+      <Section spacing={"none"}>
+        <div className="relative w-full bg-[url(/assets/backgrounds/background.webp)] bg-cover bg-center h-180">
+          {/* CTA Content */}
+          <div className="container mx-auto flex flex-col justify-center h-full space-y-4">
+            <div className="space-y-1">
+              <h2 className="text-6xl font-medium text-white max-w-130">
+                Serving our clients with Excellence
+              </h2>
+              <p className="text-white/80 w-84">
+                Reach out to us for any inquiries or to learn more about our
+                products and services.
+              </p>
+            </div>
+            <Button variant="secondary" className="w-max">
+              Contact Sales
+            </Button>
+          </div>
+          {/* end CTA Content */}
+        </div>
+      </Section>
+      {/* end CTA Section */}
     </>
   );
 }

@@ -127,11 +127,11 @@ function NewsBlock() {
         {/* Image */}
         <div>
           <Image
-            src={"/assets/images/test.jpeg"}
+            src={"/assets/images/expo-mock.jpg"}
             alt={"test image"}
             width={400}
             height={400}
-            className="object-fill h-48"
+            className="object-cover h-48"
           />
         </div>
         {/* end Image */}
@@ -139,16 +139,17 @@ function NewsBlock() {
         <div className="flex flex-col items-start justify-between h-full">
           {/* Content */}
           <div className={cn("space-y-2")}>
-            <p className={cn("text-primary text-xl line-clamp-1")}>
-              Website Redesign
+            <p
+              className={cn(
+                "text-primary text-xl tracking-tighter font-medium line-clamp-1",
+              )}
+            >
+              Swaraj in CMPL expo 2026
             </p>
-            <p className="text-accent-foreground/70! line-clamp-3">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem
-              nostrum in consequatur fuga fugit fugiat molestiae quos, rerum
-              excepturi. Porro culpa dolorum deserunt saepe sit? Suscipit,
-              asperiores dolor sit repudiandae ipsa dolores natus dolorem odit
-              consequatur libero repellat fugiat consequuntur omnis mollitia.
-              Suscipit sed repellat cum ad illum, harum ratione.
+            <p className="text-accent-foreground/70! line-clamp-3 text-base tracking-tighter leading-[1.2]">
+              Come and meet us at the 2026 CMPL expo in Delhi, India. We will be
+              showcasing our latest innovations and products. Swaraj is a
+              leading manufacturers of CNC machines and related technologies.
             </p>
           </div>
           {/* end Content */}

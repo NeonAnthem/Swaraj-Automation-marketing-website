@@ -408,7 +408,7 @@ export default function Timeline({
           </div>
 
           <div className="relative h-full w-full  max-[1025px]:h-[50%]">
-            <div className="w-full absolute left-0 top-[49%] tranlate-y-[-50%] flex items-center h-fit">
+            <div className="w-full absolute left-0 top-[49%] translate-y-[-50%] flex items-center h-fit">
               <div
                 className="h-[.8vw] max-md:h-[2vw] max-md:w-[2vw] w-[.8vw] rounded-full max-[1025px]:w-[1.5vw] max-[1025px]:h-[1.5vw]"
                 style={activeStyle}

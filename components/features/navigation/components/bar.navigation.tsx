@@ -2,6 +2,7 @@
 
 import { NavBar, NavGroup } from "@/components/ui/nav-items";
 import { cn } from "@/lib/utils";
+import { Suspense } from "react";
 import { useNavigationStore } from "../providers/navigation.store.provider";
 import NavigationDarkObserver from "./dark.observer.navigation";
 import NavigationCTA from "./items.navigation/cta.navigation";
@@ -15,7 +16,9 @@ export default function NavigationBar() {
 
   return (
     <>
-      <NavigationDarkObserver />
+      <Suspense fallback={null}>
+        <NavigationDarkObserver />
+      </Suspense>
       {/* Placeholder Navigation bar */}
       {/* <div className={"h-12 bg-transparent"}></div> */}
       {/* end Placeholder Navigation bar */}

@@ -54,7 +54,7 @@ export default function ContactPage() {
               </div>
               <div className="flex flex-col gap-2">
                 <Label>Phone</Label>
-                <Input type="phone" />
+                <Input type="tel" />
               </div>
               <div className="flex flex-col gap-2">
                 <Label>Message</Label>

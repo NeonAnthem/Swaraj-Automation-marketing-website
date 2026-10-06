@@ -6,7 +6,7 @@ import Link from "next/link";
 const members = [
   {
     name: "Shahank Doshi",
-    role: "Founder",
+    role: "Founder (founded in 1997)",
     avatar:
       "https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?q=80&w=2352&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -34,7 +34,7 @@ export function TeamSection() {
         </div>
         <div className="mt-12 grid gap-4 md:mt-24 md:grid-cols-2 md:gap-6 lg:gap-12">
           <div className="sm:w-2/5">
-            <h2 className="text-4xl font-medium tracking-tight">
+            <h2 className="text-4xl font-medium tracking-tighter">
               Meet our team
             </h2>
           </div>
@@ -63,9 +63,9 @@ export function TeamSection() {
                   <Image
                     className="size-full object-cover object-top grayscale"
                     src={member.avatar}
-                    alt="team member"
-                    width="826"
-                    height="1239"
+                    alt={`Avatar of ${member.name}`}
+                    width={826}
+                    height={1239}
                     sizes="(max-width: 768px) 100vw, 280px"
                   />
                 </div>
