@@ -31,9 +31,8 @@ function NavBar({
   return (
     <div
       className={cn(
-        "flex items-center mx-auto justify-between fixed top-0 w-full h-12 z-100 px-2 md:px-12 transition-colors duration-300 bg-background text-foreground",
+        "flex items-center mx-auto justify-between fixed top-0 w-full h-12 z-100 px-2 md:px-12 transition-colors duration-300 text-foreground",
         className,
-        {},
       )}
     >
       {children}

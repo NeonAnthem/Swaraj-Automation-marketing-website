@@ -7,15 +7,20 @@ const NAVMENUS: INavbarItems[] = [
     label: "Home",
   },
   {
-    id: "services",
+    id: "about",
     position: "a",
-    label: "Services",
+    label: "About us",
+  },
+  {
+    id: "products",
+    position: "a",
+    label: "Products",
     child: [
       {
         contentType: "list",
         position: "a",
         span: 1,
-        heading: "Development Services",
+        heading: "By Industries",
         children:
           // (await getServicesByCategories("website"))?.map((s) => ({
           //   label: s.name,
@@ -23,12 +28,28 @@ const NAVMENUS: INavbarItems[] = [
           // })) ?? [],
           [
             {
-              label: "Website Redesign",
-              href: "/website-redesign",
+              label: "Deep hole Gun Drilling Machine",
+              href: "#",
             },
             {
-              label: "Premium Web Design",
+              label: "Pellet Die Gun Drilling Machine",
               href: "/premium-web-design",
+            },
+            {
+              label: "Deep Drilling Machine",
+              href: "#",
+            },
+            {
+              label: "Countering Machine",
+              href: "#",
+            },
+            {
+              label: "Dimpling Machine",
+              href: "#",
+            },
+            {
+              label: "Slide Units",
+              href: "#",
             },
           ],
       },
@@ -37,30 +58,26 @@ const NAVMENUS: INavbarItems[] = [
         heading: "Branding & Positioning Services",
         position: "b",
         span: 1,
-        cta: {
-          label: "Explore Optimization Solutions",
-          href: "/services/go-to-market",
-        },
         children: [
           {
-            label: "Strategic Positioning",
-            href: "/strategic-positioning",
+            label: "Drilling Reaming Machine",
+            href: "/#",
           },
           {
-            label: "Branding",
-            href: "/branding",
+            label: "Special Purpose Drilling Machine",
+            href: "/special-purpose-drilling-machine",
           },
           {
-            label: "GTM Strategy",
+            label: "Gantry Machine",
             href: "/gtm-strategy",
           },
           {
-            label: "Website CRO",
+            label: "Plano Machine",
             href: "/website-cro",
           },
           {
-            label: "AI for Web",
-            href: "/ai-for-web",
+            label: "Electrical Drivers",
+            href: "/#",
           },
         ],
       },
@@ -69,18 +86,10 @@ const NAVMENUS: INavbarItems[] = [
         heading: "Infrastructure",
         position: "c",
         span: 1,
-        cta: {
-          label: "Explore Optimization Solutions",
-          href: "/services/go-to-market",
-        },
         children: [
           {
-            label: "CMS Infrastructure",
+            label: "VFD",
             href: "/cro-agency",
-          },
-          {
-            label: "Custom Applications",
-            href: "/custom-applications",
           },
         ],
       },
@@ -101,83 +110,27 @@ const NAVMENUS: INavbarItems[] = [
     ],
   },
   {
-    id: "industries",
+    id: "services",
     position: "b",
-    label: "Industries",
+    label: "Service",
     child: [
       {
         contentType: "list",
         position: "ab",
-        span: 1,
+        span: 3,
         heading: "Product-Led Growth",
         children: [
           {
-            label: "Fin Tech",
-            href: "/saas/fin-tech",
+            label: "Retrofitting & Reconditioning",
+            href: "/services/retrofitting-reconditioning",
           },
           {
-            label: "HR Tech",
-            href: "/saas/hr-tech",
+            label: "CNC Upgradation",
+            href: "/services/cnc-upgradation",
           },
           {
-            label: "Healthcare Tech",
-            href: "/saas/healthcare-tech",
-          },
-          {
-            label: "Customer Tech",
-            href: "/saas/customer-tech",
-          },
-          {
-            label: "Innovation Tech",
-            href: "/saas/innovation-tech",
-          },
-          {
-            label: "Other SaaS",
-            href: "/saas",
-          },
-        ],
-      },
-      {
-        contentType: "list",
-        position: "b",
-        span: 1,
-        heading: "Sales-Led Growth",
-        children: [
-          {
-            label: "Commercial HVAC",
-            href: "/sales-led/HVAC-services",
-          },
-          {
-            label: "B2B Fleet Services",
-            href: "/sales-led/fleet-services",
-          },
-          {
-            label: "B2B Legal Services",
-            href: "/sales-led/legal-services",
-          },
-          {
-            label: "Marketing & Agency",
-            href: "/sales-led/marketing-and-agency",
-          },
-        ],
-      },
-      {
-        contentType: "list",
-        position: "c",
-        span: 1,
-        heading: "Referral-Led Growth",
-        children: [
-          {
-            label: "Manufacturing Startups",
-            href: "/manufacturing-startups",
-          },
-          {
-            label: "(RLG) B2B Startups",
-            href: "/leasing-startups",
-          },
-          {
-            label: "B2B Legal Startups",
-            href: "/b2b-legal-startups",
+            label: "Gun Drilling Services",
+            href: "/services/gun-drilling-services",
           },
         ],
       },

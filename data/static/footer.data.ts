@@ -4,6 +4,7 @@ import NAVMENUS from "../queries/navigation/nav.data";
 export interface IFooterLink {
   label: string;
   href: string;
+  tag?: string;
 }
 
 export interface IFooterColumn {
@@ -29,6 +30,11 @@ function flattenNavGroupLinks(groupId: string): IFooterLink[] {
 
 export const FOOTER_LINK_COLUMNS: IFooterColumn[] = [
   {
+    id: "products",
+    heading: "Products",
+    links: flattenNavGroupLinks("products"),
+  },
+  {
     id: "services",
     heading: "Services",
     links: flattenNavGroupLinks("services"),
@@ -41,17 +47,13 @@ export const FOOTER_LINK_COLUMNS: IFooterColumn[] = [
       { label: "About Us", href: "/about" },
       { label: "Our Work", href: "/explore" },
       { label: "Contact", href: "/contact" },
+      { label: "Careers", href: "/contact/careers", tag: "We're hiring" },
     ],
   },
   {
     id: "regions",
     heading: "Regions",
     links: flattenNavGroupLinks("regions"),
-  },
-  {
-    id: "resources",
-    heading: "Resources",
-    links: flattenNavGroupLinks("blogs"),
   },
 ];
 

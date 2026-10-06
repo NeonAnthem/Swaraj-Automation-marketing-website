@@ -12,6 +12,17 @@ function NavigationItemTrigger({ ...item }: INavbarItems) {
 
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
+  if (!item.child)
+    return (
+      <NavigationMenu.Link
+        className={
+          "pr-8 relative flex items-center gap-1 w-max text-white text-nowrap [&>svg]:text-foreground [&>svg]:size-4 cursor-pointer font-medium"
+        }
+      >
+        {item.label}
+      </NavigationMenu.Link>
+    );
+
   return (
     <NavigationMenu.Item
       data-slot={"navigation-menu-item"}
@@ -34,7 +45,10 @@ function NavigationItemTrigger({ ...item }: INavbarItems) {
         nativeButton={false}
         render={
           <div className="relative">
-            <CTALink isHovered={isHovered} className="cursor-default!">
+            <CTALink
+              isHovered={isHovered}
+              className="cursor-default! text-white [&>svg]:text-white"
+            >
               {item.label}
               <NavigationMenu.Icon
                 className="transition-transform duration-200 ease-[ease] data-popup-open:rotate-180"

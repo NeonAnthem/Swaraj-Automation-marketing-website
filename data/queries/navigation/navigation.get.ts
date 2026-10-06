@@ -18,8 +18,8 @@ const MOCK_NAV_CTA = {
     href: "/contact",
   },
   secondaryCTA: {
-    label: "See our work",
-    href: "/explore",
+    label: "Career",
+    href: "/careers",
   },
 };
 
