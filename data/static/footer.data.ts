@@ -32,12 +32,17 @@ export const FOOTER_LINK_COLUMNS: IFooterColumn[] = [
   {
     id: "products",
     heading: "Products",
-    links: flattenNavGroupLinks("products"),
+    links: flattenNavGroupLinks("machines"),
   },
   {
     id: "services",
     heading: "Services",
     links: flattenNavGroupLinks("services"),
+  },
+  {
+    id: "solutions",
+    heading: "Solutions",
+    links: flattenNavGroupLinks("solutions"),
   },
   {
     id: "company",
@@ -48,20 +53,6 @@ export const FOOTER_LINK_COLUMNS: IFooterColumn[] = [
       { label: "Our Work", href: "/explore" },
       { label: "Contact", href: "/contact" },
       { label: "Careers", href: "/contact/careers", tag: "We're hiring" },
-    ],
-  },
-  {
-    id: "regions",
-    heading: "Regions",
-    links: [
-      {
-        label: "Global",
-        href: "/regions/global",
-      },
-      {
-        label: "Maharashtra",
-        href: "/regions/maharashtra",
-      },
     ],
   },
 ];
