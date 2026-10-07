@@ -2,7 +2,7 @@ import Footer from "@/components/features/footer/footer";
 import NavigationBar from "@/components/features/navigation/components/bar.navigation";
 import NavigationProvider from "@/components/features/navigation/providers/index.provider";
 import { NavbarProvider } from "@/components/ui/nav-items";
-import { archivoFont, geistMono } from "@/lib/fonts";
+import { archivoFont, geistMono, interFont } from "@/lib/fonts";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -19,7 +19,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${archivoFont.variable} ${geistMono.variable} ${archivoFont.className} h-full antialiased`}
+      className={`${archivoFont.variable} ${geistMono.variable} ${archivoFont.className} ${interFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <NavigationProvider>

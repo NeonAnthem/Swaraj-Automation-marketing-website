@@ -1,4 +1,4 @@
-import { Archivo, Geist_Mono } from "next/font/google";
+import { Archivo, Geist_Mono, Inter } from "next/font/google";
 
 export const archivoFont = Archivo({
   variable: "--font-sans",
@@ -7,5 +7,10 @@ export const archivoFont = Archivo({
 
 export const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const interFont = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });

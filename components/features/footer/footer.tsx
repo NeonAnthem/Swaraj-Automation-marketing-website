@@ -200,7 +200,7 @@ export default function Footer() {
           className={"h-auto w-full *:fill-white/80"}
         /> */}
         <div className="flex items-center justify-center w-full">
-          <p className="tracking-tighter leading-[0.98] text-[300px] w-max">
+          <p className="tracking-tighter leading-[0.98] text-[300px] w-max font-inter">
             Since 1997
           </p>
         </div>
