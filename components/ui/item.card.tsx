@@ -14,12 +14,12 @@ export interface IItem {
 }
 
 function ItemImageBleedCard({ item }: { item: IItem }) {
-  const navigate = useRouter();
+  const router = useRouter();
   return (
-    <div
+    <div role="link" tabIndex={0} onKeyDown={() => {if (item.href) router.push(item.href)}}
       onClick={() => {
         if (item?.href) {
-          navigate.push(item.href);
+          router.push(item.href);
         }
       }}
       className={cn(
