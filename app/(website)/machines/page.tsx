@@ -34,7 +34,7 @@ export default function MachinesPage() {
       <Section>
         <SectionContent>
           {/* Item Wrapper */}
-          <div className="flex flex-wrap gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {Array.from({ length: 6 }).map((_, index) => (
               <ItemProductCard
                 key={index}
