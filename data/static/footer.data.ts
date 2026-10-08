@@ -30,8 +30,8 @@ function flattenNavGroupLinks(groupId: string): IFooterLink[] {
 
 export const FOOTER_LINK_COLUMNS: IFooterColumn[] = [
   {
-    id: "products",
-    heading: "Products",
+    id: "machines",
+    heading: "Machines",
     links: flattenNavGroupLinks("machines"),
   },
   {
