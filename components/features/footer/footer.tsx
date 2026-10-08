@@ -142,6 +142,10 @@ export default function Footer() {
             <BrandMark className="mt-3 sm:hidden" />
           </div>
 
+          {/* Neon Anthem follow link */}
+          <NeonAnthemWidget />
+          {/* end Neon Anthem follow link */}
+
           <div className="mt-4 flex items-center gap-3 *:[&>svg]:size-4 sm:mt-0">
             {socials.map((social) => (
               <Link
@@ -207,5 +211,24 @@ export default function Footer() {
       </div>
       {/* end Neon Anthem Footer Bleed Logo */}
     </footer>
+  );
+}
+
+function NeonAnthemWidget() {
+  return (
+    <div className="">
+      {/* Replace this with the actual Neon Anthem follow link widget */}
+      <Link
+        href="https://neonanthem.com/follow"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-foreground hover:text-foreground/80 transition-colors"
+      >
+        <p className={"text-xs text-muted-foreground"}>
+          Designed & Engineered by{" "}
+          <span className="font-semibold text-foreground">Neon Anthem</span>
+        </p>
+      </Link>
+    </div>
   );
 }
