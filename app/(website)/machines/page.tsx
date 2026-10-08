@@ -1,7 +1,11 @@
+import { Section } from "@/components/features/section/element.section";
+
 export default function MachinesPage() {
   return (
     <>
-      <h1>Machines pages</h1>
+      <Section>
+        <h1>Machines page</h1>
+      </Section>
     </>
   );
 }
