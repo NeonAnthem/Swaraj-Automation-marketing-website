@@ -7,7 +7,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "%s | Swaraj Automations",
+  title: {
+    template: "%s | Swaraj Automations",
+    default: "Swaraj Automations",
+  },
   description: "CNC machining and automation solutions",
   openGraph: {
     title: "Swaraj Automations",
