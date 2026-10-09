@@ -100,7 +100,7 @@ export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
             <div className={"text-start space-y-8 "}>
               {/* Label */}
 
-              <Tag className={"uppercase"} size={"none"}>
+              <Tag textCase={"upper"} size={"none"}>
                 Precision Deep hole drilling
               </Tag>
 
