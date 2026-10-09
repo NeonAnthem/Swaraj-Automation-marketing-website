@@ -23,10 +23,11 @@ export async function generateStaticParams() {
  */
 export async function generateMetadata({
   params,
-  searchParams,
 }: INextPageProps): Promise<Metadata> {
+  const machineSlug = (await params).slug;
+
   return {
-    title: `Machine Name`,
+    title: machineSlug, // TODO: Replace with the actual machine name once available
   };
 }
 
@@ -36,15 +37,12 @@ export async function generateMetadata({
  * @param searchParams The props object containing the search parameters.
  * @returns The JSX element representing the machine page.
  */
-export default async function MachinesSlugPage({
-  params,
-  searchParams,
-}: INextPageProps) {
-  const { slug } = await params;
+export default async function MachinesSlugPage({ params }: INextPageProps) {
+  const { slug: machineSlug } = await params;
 
   return (
     <>
-      <ItemPageComponent machineKey={slug} />
+      <ItemPageComponent machineKey={machineSlug} />
     </>
   );
 }
