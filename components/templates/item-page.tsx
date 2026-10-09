@@ -9,6 +9,7 @@ import {
   IconPlayerPlayFilled,
 } from "@tabler/icons-react";
 import { useRef, useState } from "react";
+import Tag from "../ui/tag";
 
 interface IItemPageComponentProps {
   machineKey: string;
@@ -98,12 +99,11 @@ export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
             {/* Text Content Area */}
             <div className={"text-start space-y-8 "}>
               {/* Label */}
-              <div className={"flex items-center gap-1"}>
-                <span className={"bg-primary size-1.5"}></span>
-                <p className={"uppercase text-foreground-muted tracking-wider"}>
-                  Precision Deep hole drilling
-                </p>
-              </div>
+
+              <Tag className={"uppercase"} size={"none"}>
+                Precision Deep hole drilling
+              </Tag>
+
               {/* end Label */}
 
               {/* Machine Details */}
@@ -127,15 +127,9 @@ export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
                   "CNC Controlled",
                   "High-Precision Machining",
                 ].map((tag) => (
-                  <div
-                    className={
-                      "rounded-full px-3 py-1 border flex items-center gap-2.5"
-                    }
-                    key={tag}
-                  >
-                    <div className={"bg-primary size-1.5 rounded-full"}></div>
-                    <span className={"text-foreground text-sm"}>{tag}</span>
-                  </div>
+                  <Tag key={tag} variant={"pill"}>
+                    {tag}
+                  </Tag>
                 ))}
               </div>
               {/* end Tags */}
