@@ -39,7 +39,10 @@ export default function Tag({
   ...props
 }: ITagProps) {
   return (
-    <div className={tagVariants({ variant, size, textCase, className })} ...props>
+    <div
+      className={tagVariants({ variant, size, textCase, className })}
+      {...props}
+    >
       {/* Tag Identifier */}
       <div className={"bg-primary size-2"}></div>
       {/* end Tag Identifier */}
