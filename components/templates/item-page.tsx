@@ -5,10 +5,19 @@ import {
   SectionContent,
 } from "@/components/features/section/index.section";
 import {
+  IconArrowRight,
   IconPlayerPauseFilled,
   IconPlayerPlayFilled,
 } from "@tabler/icons-react";
 import { useRef, useState } from "react";
+import {
+  List,
+  ListCard,
+  ListCardHeader,
+  ListCardTitle,
+  ListItem,
+} from "../ui/list";
+import { Separator } from "../ui/separator";
 import Tag from "../ui/tag";
 
 interface IItemPageComponentProps {
@@ -79,11 +88,32 @@ function MachineVideoFrame({ videoUrl, title }: IMachineVideoFrameProps) {
 export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
   const mockMachine = {
     key: machineKey,
-    name: "Deep Hole Gun Drilling Machine",
+    name: "Micro Gun Drilling Machine",
+    tagline: "Precision deep hole drilling for small-diameter applications.",
+    tags: [
+      "Small-Diameter Drilling",
+      "CNC Controlled",
+      "High-Precision Machining",
+    ],
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis tempora, natus ea culpa quasi nostrum dolor nihil explicabo. Vitae, corrupti pariatur nemo a culpa asperiores ad quod aut ea sint eveniet tempore.",
+      "Designed for accurate, repeatable drilling of small-diameter, deep holes in industrial components.",
 
     videoUrl: "https://www.youtube.com/embed/RGFsdCiJveU",
+    features: [
+      "Precision spindle system for small-diameter drilling.",
+      "CNC-controlled drilling cycles for repeatability.",
+      "High-pressure coolant delivery through the gun drill with 5 micron Filtration",
+      "Configurable spindle speed and feed parameters.",
+      "Customized workholding solutions",
+      "Compact Sized Machine - Less Floor Area Occupied",
+    ],
+    applications: [
+      "Core Pins",
+      "Implants & Instruments",
+      "Gauges",
+      "Spindles",
+      "Electronic Components",
+    ],
   };
 
   return (
@@ -115,18 +145,14 @@ export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
                 {/* end Machine Name */}
                 {/* Description */}
                 <p className={"max-w-[90%] xl:max-w-120 text-muted-foreground"}>
-                  {mockMachine.description}
+                  {mockMachine.tagline}
                 </p>
                 {/* end Description */}
               </div>
               {/* end Machine Detials */}
               {/* tags */}
               <div className={"flex flex-wrap gap-2"}>
-                {[
-                  "Small-Diameter Drilling",
-                  "CNC Controlled",
-                  "High-Precision Machining",
-                ].map((tag) => (
+                {mockMachine.tags.map((tag) => (
                   <Tag key={tag} variant={"pill"}>
                     {tag}
                   </Tag>
@@ -159,7 +185,65 @@ export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
       <Section>
         <SectionContent>
           {/* Grid */}
-          <div className={"w-full min-h-screen flex flex-row gap-2"}>
+          <div
+            className={
+              "w-full min-h-screen flex flex-row justify-between gap-2"
+            }
+          >
+            {/* Text Content */}
+            <div className="text-start my-2 mb-4 space-y-3">
+              <h4 className={"tracking-tighter text-2xl text-foreground"}>
+                Overview
+              </h4>
+              <p
+                className={
+                  "tracking-tight leading-[0.98] text-muted-foreground xl:max-w-160"
+                }
+              >
+                {mockMachine.description}
+              </p>
+
+              <Separator className={"mt-8"} />
+              <div className={"space-y-8"}>
+                {/* Key Features */}
+                <ListCard>
+                  <ListCardHeader>
+                    <ListCardTitle>Key Features</ListCardTitle>
+                  </ListCardHeader>
+
+                  <List>
+                    {mockMachine.features.map((feature) => (
+                      <ListItem key={feature}>
+                        {/* <ListItemMarker /> */}
+                        <IconArrowRight className={"size-4"} />
+                        {feature}
+                      </ListItem>
+                    ))}
+                  </List>
+                </ListCard>
+                {/* end Key Features */}
+                <Separator />
+
+                {/* Applications */}
+                <ListCard>
+                  <ListCardHeader>
+                    <ListCardTitle>Applications</ListCardTitle>
+                  </ListCardHeader>
+
+                  <List>
+                    {mockMachine.applications.map((application) => (
+                      <ListItem key={application}>
+                        {/* <ListItemMarker /> */}
+                        <IconArrowRight className={"size-4"} />
+                        {application}
+                      </ListItem>
+                    ))}
+                  </List>
+                </ListCard>
+                {/* end Applications */}
+              </div>
+            </div>
+            {/* end Text Content */}
             {/* Image Content */}
             <div className={"overflow-hidden rounded-lg w-fit"}>
               <MachineVideoFrame
@@ -168,20 +252,6 @@ export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
               />
             </div>
             {/* End Image Content */}
-
-            {/* Text Content */}
-            <div className="text-start">
-              <h4 className={"tracking-tighter text-2xl text-foreground"}>
-                Description
-              </h4>
-              <p className={"tracking-tight leading-[0.98] text-foreground"}>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Voluptatum sint vel repellendus recusandae maiores et nemo
-                quidem nihil pariatur! Culpa itaque autem id temporibus porro
-                natus iure tempora quae hic. Voluptatibus, natus.
-              </p>
-            </div>
-            {/* end Text Content */}
           </div>
           {/* end Grid */}
         </SectionContent>
