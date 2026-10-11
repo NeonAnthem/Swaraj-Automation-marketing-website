@@ -5,15 +5,21 @@ import {
   SectionContent,
 } from "@/components/features/section/index.section";
 import {
+  IconArrowRight,
   IconPlayerPauseFilled,
   IconPlayerPlayFilled,
 } from "@tabler/icons-react";
 import { useRef, useState } from "react";
+import type { IMachine } from "../../data/static/machines/machines.types";
+import {
+  List,
+  ListCard,
+  ListCardHeader,
+  ListCardTitle,
+  ListItem,
+} from "../ui/list";
+import { Separator } from "../ui/separator";
 import Tag from "../ui/tag";
-
-interface IItemPageComponentProps {
-  machineKey: string;
-}
 
 interface IMachineVideoFrameProps {
   videoUrl: string;
@@ -76,16 +82,11 @@ function MachineVideoFrame({ videoUrl, title }: IMachineVideoFrameProps) {
   );
 }
 
-export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
-  const mockMachine = {
-    key: machineKey,
-    name: "Deep Hole Gun Drilling Machine",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis tempora, natus ea culpa quasi nostrum dolor nihil explicabo. Vitae, corrupti pariatur nemo a culpa asperiores ad quod aut ea sint eveniet tempore.",
+interface IItemPageComponentProps {
+  machine: IMachine;
+}
 
-    videoUrl: "https://www.youtube.com/embed/RGFsdCiJveU",
-  };
-
+export function ItemPageComponent({ machine }: IItemPageComponentProps) {
   return (
     <>
       <Section className={"border-b"}>
@@ -98,35 +99,27 @@ export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
           >
             {/* Text Content Area */}
             <div className={"text-start space-y-8 "}>
-              {/* Label */}
-
+              {/* Category Label */}
               <Tag textCase={"upper"} size={"none"}>
-                Precision Deep hole drilling
+                {machine.category ?? "Machines"}
               </Tag>
-
-              {/* end Label */}
+              {/* end Category Label */}
 
               {/* Machine Details */}
               <div className={"space-y-4"}>
                 {/* Machine Name */}
-                <h2 className={"text-5xl tracking-tight"}>
-                  {mockMachine.name}
-                </h2>
+                <h2 className={"text-5xl tracking-tight"}>{machine.name}</h2>
                 {/* end Machine Name */}
                 {/* Description */}
                 <p className={"max-w-[90%] xl:max-w-120 text-muted-foreground"}>
-                  {mockMachine.description}
+                  {machine.description}
                 </p>
                 {/* end Description */}
               </div>
-              {/* end Machine Detials */}
+              {/* end Machine Details */}
               {/* tags */}
               <div className={"flex flex-wrap gap-2"}>
-                {[
-                  "Small-Diameter Drilling",
-                  "CNC Controlled",
-                  "High-Precision Machining",
-                ].map((tag) => (
+                {machine.tags.map((tag) => (
                   <Tag key={tag} variant={"pill"}>
                     {tag}
                   </Tag>
@@ -145,7 +138,7 @@ export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
             {/* Video Area */}
             <div className={"rounded-2xl overflow-hidden"}>
               {/* <MachineVideoFrame
-                videoUrl={mockMachine.videoUrl}
+                videoUrl={machine.videoUrl}
                 title="Machine Video"
               /> */}
             </div>
@@ -159,34 +152,96 @@ export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
       <Section>
         <SectionContent>
           {/* Grid */}
-          <div className={"w-full min-h-screen flex flex-row gap-2"}>
-            {/* Image Content */}
-            <div className={"overflow-hidden rounded-lg w-fit"}>
-              <MachineVideoFrame
-                videoUrl={mockMachine.videoUrl}
-                title={"Machine Video"}
-              />
-            </div>
-            {/* End Image Content */}
-
+          <div
+            className={
+              "w-full min-h-screen flex flex-row justify-between gap-2"
+            }
+          >
             {/* Text Content */}
-            <div className="text-start">
-              <h4 className={"tracking-tighter text-2xl text-foreground"}>
-                Description
-              </h4>
-              <p className={"tracking-tight leading-[0.98] text-foreground"}>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Voluptatum sint vel repellendus recusandae maiores et nemo
-                quidem nihil pariatur! Culpa itaque autem id temporibus porro
-                natus iure tempora quae hic. Voluptatibus, natus.
-              </p>
+            <div className="text-start my-2 mb-4 space-y-3">
+              {/* Overview */}
+              <div>
+                <h4 className={"tracking-tighter text-2xl text-foreground"}>
+                  Overview
+                </h4>
+                <p className={"text-muted-foreground xl:max-w-160"}>
+                  {machine.description}
+                </p>
+              </div>
+              {/* end Overview */}
+
+              {/* Separator between Overview and Key Features */}
+              <Separator className={"mt-8"} />
+              {/* End Separator */}
+              <div className={"space-y-8"}>
+                {/* Key Features */}
+
+                <ItemListComponent
+                  title={"Key Features"}
+                  items={machine.features}
+                />
+
+                {/* end Key Features */}
+                <Separator />
+
+                {/* Applications */}
+                <ItemListComponent
+                  title={"Applications"}
+                  items={machine.applications}
+                />
+                {/* end Applications */}
+              </div>
             </div>
             {/* end Text Content */}
+            {/* Image Content */}
+            <div className={"overflow-hidden rounded-lg w-fit"}>
+              {machine?.videoUrl ? (
+                <MachineVideoFrame
+                  videoUrl={machine.videoUrl}
+                  title={"Machine Video"}
+                />
+              ) : null}
+            </div>
+            {/* End Image Content */}
           </div>
           {/* end Grid */}
         </SectionContent>
       </Section>
       {/* end Grid Section */}
     </>
+  );
+}
+
+//* Item List Component
+
+interface IItemListComponent {
+  title: string;
+  items: string[];
+}
+
+/**
+ *
+ * @param title header title for the list
+ * @param items array of string to be displayed as list
+ * @returns ReactNode
+ */
+function ItemListComponent({ title, items }: IItemListComponent) {
+  return (
+    <ListCard>
+      <ListCardHeader>
+        <ListCardTitle>{title}</ListCardTitle>
+      </ListCardHeader>
+
+      <List>
+        {items?.map((item, index) => {
+          return (
+            <ListItem key={item + index}>
+              <IconArrowRight className={"size-4"} aria-hidden={true} />
+              {item}
+            </ListItem>
+          );
+        })}
+      </List>
+    </ListCard>
   );
 }
