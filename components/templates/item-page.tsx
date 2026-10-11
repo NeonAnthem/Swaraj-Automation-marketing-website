@@ -4,12 +4,15 @@ import {
   Section,
   SectionContent,
 } from "@/components/features/section/index.section";
+import { MACHINES_MAP } from "@/data/static/machines/machines";
 import {
   IconArrowRight,
   IconPlayerPauseFilled,
   IconPlayerPlayFilled,
 } from "@tabler/icons-react";
+import { notFound } from "next/navigation";
 import { useRef, useState } from "react";
+import type { IMachine } from "../../data/static/machines/machines.types";
 import {
   List,
   ListCard,
@@ -86,35 +89,9 @@ function MachineVideoFrame({ videoUrl, title }: IMachineVideoFrameProps) {
 }
 
 export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
-  const mockMachine = {
-    key: machineKey,
-    name: "Micro Gun Drilling Machine",
-    tagline: "Precision deep hole drilling for small-diameter applications.",
-    tags: [
-      "Small-Diameter Drilling",
-      "CNC Controlled",
-      "High-Precision Machining",
-    ],
-    description:
-      "Designed for accurate, repeatable drilling of small-diameter, deep holes in industrial components.",
+  const machine: IMachine = MACHINES_MAP?.[machineKey as never];
 
-    videoUrl: "https://www.youtube.com/embed/RGFsdCiJveU",
-    features: [
-      "Precision spindle system for small-diameter drilling.",
-      "CNC-controlled drilling cycles for repeatability.",
-      "High-pressure coolant delivery through the gun drill with 5 micron Filtration",
-      "Configurable spindle speed and feed parameters.",
-      "Customized workholding solutions",
-      "Compact Sized Machine - Less Floor Area Occupied",
-    ],
-    applications: [
-      "Core Pins",
-      "Implants & Instruments",
-      "Gauges",
-      "Spindles",
-      "Electronic Components",
-    ],
-  };
+  if (!machine) return notFound();
 
   return (
     <>
@@ -139,20 +116,18 @@ export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
               {/* Machine Details */}
               <div className={"space-y-4"}>
                 {/* Machine Name */}
-                <h2 className={"text-5xl tracking-tight"}>
-                  {mockMachine.name}
-                </h2>
+                <h2 className={"text-5xl tracking-tight"}>{machine.name}</h2>
                 {/* end Machine Name */}
                 {/* Description */}
                 <p className={"max-w-[90%] xl:max-w-120 text-muted-foreground"}>
-                  {mockMachine.tagline}
+                  {machine.tagline}
                 </p>
                 {/* end Description */}
               </div>
-              {/* end Machine Detials */}
+              {/* end Machine Details */}
               {/* tags */}
               <div className={"flex flex-wrap gap-2"}>
-                {mockMachine.tags.map((tag) => (
+                {machine.tags.map((tag) => (
                   <Tag key={tag} variant={"pill"}>
                     {tag}
                   </Tag>
@@ -171,7 +146,7 @@ export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
             {/* Video Area */}
             <div className={"rounded-2xl overflow-hidden"}>
               {/* <MachineVideoFrame
-                videoUrl={mockMachine.videoUrl}
+                videoUrl={machine.videoUrl}
                 title="Machine Video"
               /> */}
             </div>
@@ -200,46 +175,26 @@ export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
                   "tracking-tight leading-[0.98] text-muted-foreground xl:max-w-160"
                 }
               >
-                {mockMachine.description}
+                {machine.description}
               </p>
 
               <Separator className={"mt-8"} />
               <div className={"space-y-8"}>
                 {/* Key Features */}
-                <ListCard>
-                  <ListCardHeader>
-                    <ListCardTitle>Key Features</ListCardTitle>
-                  </ListCardHeader>
 
-                  <List>
-                    {mockMachine.features.map((feature) => (
-                      <ListItem key={feature}>
-                        {/* <ListItemMarker /> */}
-                        <IconArrowRight className={"size-4"} />
-                        {feature}
-                      </ListItem>
-                    ))}
-                  </List>
-                </ListCard>
+                <ItemListComponent
+                  title={"Key Features"}
+                  items={machine.features}
+                />
+
                 {/* end Key Features */}
                 <Separator />
 
                 {/* Applications */}
-                <ListCard>
-                  <ListCardHeader>
-                    <ListCardTitle>Applications</ListCardTitle>
-                  </ListCardHeader>
-
-                  <List>
-                    {mockMachine.applications.map((application) => (
-                      <ListItem key={application}>
-                        {/* <ListItemMarker /> */}
-                        <IconArrowRight className={"size-4"} />
-                        {application}
-                      </ListItem>
-                    ))}
-                  </List>
-                </ListCard>
+                <ItemListComponent
+                  title={"Applications"}
+                  items={machine.applications}
+                />
                 {/* end Applications */}
               </div>
             </div>
@@ -247,7 +202,7 @@ export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
             {/* Image Content */}
             <div className={"overflow-hidden rounded-lg w-fit"}>
               <MachineVideoFrame
-                videoUrl={mockMachine.videoUrl}
+                videoUrl={machine.videoUrl}
                 title={"Machine Video"}
               />
             </div>
@@ -258,5 +213,39 @@ export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
       </Section>
       {/* end Grid Section */}
     </>
+  );
+}
+
+//* Item List Component
+
+interface IItemListComponent {
+  title: string;
+  items: string[];
+}
+
+/**
+ *
+ * @param title Header title for the list
+ * @param items Array of String to be displayed as list
+ * @returns React.Node
+ */
+function ItemListComponent({ title, items }: IItemListComponent) {
+  return (
+    <ListCard>
+      <ListCardHeader>
+        <ListCardTitle>{title}</ListCardTitle>
+      </ListCardHeader>
+
+      <List>
+        {items?.map((item, index) => {
+          return (
+            <ListItem key={item + index}>
+              <IconArrowRight className={"size-4"} aria-hidden={true} />
+              {item}
+            </ListItem>
+          );
+        })}
+      </List>
+    </ListCard>
   );
 }
