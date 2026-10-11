@@ -8,7 +8,7 @@ export interface IMachine {
    */
   tags: string[];
   /**
-   * Youtube Video URL of the machine
+   * YouTube Video URL of the machine
    */
   videoUrl: string;
 

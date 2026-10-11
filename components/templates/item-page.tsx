@@ -4,13 +4,11 @@ import {
   Section,
   SectionContent,
 } from "@/components/features/section/index.section";
-import { MACHINES_MAP } from "@/data/static/machines/machines";
 import {
   IconArrowRight,
   IconPlayerPauseFilled,
   IconPlayerPlayFilled,
 } from "@tabler/icons-react";
-import { notFound } from "next/navigation";
 import { useRef, useState } from "react";
 import type { IMachine } from "../../data/static/machines/machines.types";
 import {
@@ -22,10 +20,6 @@ import {
 } from "../ui/list";
 import { Separator } from "../ui/separator";
 import Tag from "../ui/tag";
-
-interface IItemPageComponentProps {
-  machineKey: string;
-}
 
 interface IMachineVideoFrameProps {
   videoUrl: string;
@@ -88,11 +82,11 @@ function MachineVideoFrame({ videoUrl, title }: IMachineVideoFrameProps) {
   );
 }
 
-export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
-  const machine: IMachine = MACHINES_MAP?.[machineKey as never];
+interface IItemPageComponentProps {
+  machine: IMachine;
+}
 
-  if (!machine) return notFound();
-
+export function ItemPageComponent({ machine }: IItemPageComponentProps) {
   return (
     <>
       <Section className={"border-b"}>
@@ -105,13 +99,11 @@ export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
           >
             {/* Text Content Area */}
             <div className={"text-start space-y-8 "}>
-              {/* Label */}
-
+              {/* Category Label */}
               <Tag textCase={"upper"} size={"none"}>
-                Precision Deep hole drilling
+                {machine.category ?? "Machines"}
               </Tag>
-
-              {/* end Label */}
+              {/* end Category Label */}
 
               {/* Machine Details */}
               <div className={"space-y-4"}>
@@ -120,7 +112,7 @@ export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
                 {/* end Machine Name */}
                 {/* Description */}
                 <p className={"max-w-[90%] xl:max-w-120 text-muted-foreground"}>
-                  {machine.tagline}
+                  {machine.description}
                 </p>
                 {/* end Description */}
               </div>
@@ -167,18 +159,20 @@ export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
           >
             {/* Text Content */}
             <div className="text-start my-2 mb-4 space-y-3">
-              <h4 className={"tracking-tighter text-2xl text-foreground"}>
-                Overview
-              </h4>
-              <p
-                className={
-                  "tracking-tight leading-[0.98] text-muted-foreground xl:max-w-160"
-                }
-              >
-                {machine.description}
-              </p>
+              {/* Overview */}
+              <div>
+                <h4 className={"tracking-tighter text-2xl text-foreground"}>
+                  Overview
+                </h4>
+                <p className={"text-muted-foreground xl:max-w-160"}>
+                  {machine.description}
+                </p>
+              </div>
+              {/* end Overview */}
 
+              {/* Separator between Overview and Key Features */}
               <Separator className={"mt-8"} />
+              {/* End Separator */}
               <div className={"space-y-8"}>
                 {/* Key Features */}
 
@@ -201,10 +195,12 @@ export function ItemPageComponent({ machineKey }: IItemPageComponentProps) {
             {/* end Text Content */}
             {/* Image Content */}
             <div className={"overflow-hidden rounded-lg w-fit"}>
-              <MachineVideoFrame
-                videoUrl={machine.videoUrl}
-                title={"Machine Video"}
-              />
+              {machine?.videoUrl ? (
+                <MachineVideoFrame
+                  videoUrl={machine.videoUrl}
+                  title={"Machine Video"}
+                />
+              ) : null}
             </div>
             {/* End Image Content */}
           </div>
@@ -225,9 +221,9 @@ interface IItemListComponent {
 
 /**
  *
- * @param title Header title for the list
- * @param items Array of String to be displayed as list
- * @returns React.Node
+ * @param title header title for the list
+ * @param items array of string to be displayed as list
+ * @returns ReactNode
  */
 function ItemListComponent({ title, items }: IItemListComponent) {
   return (

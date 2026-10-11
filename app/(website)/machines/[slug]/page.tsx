@@ -1,5 +1,8 @@
 import { ItemPageComponent } from "@/components/templates/item-page";
+import { MACHINES_MAP } from "@/data/static/machines/machines";
+import { slugToSnakeCase } from "@/utils/case-converter";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 export const instant = false;
 
@@ -40,9 +43,18 @@ export async function generateMetadata({
 export default async function MachinesSlugPage({ params }: INextPageProps) {
   const { slug: machineSlug } = await params;
 
+  const machineKey = slugToSnakeCase(machineSlug);
+
+  // Find Machine
+  const machine = MACHINES_MAP?.[machineKey as keyof typeof MACHINES_MAP];
+
+  if (!machine) {
+    return notFound(); // or handle the case when the machine is not found
+  }
+
   return (
     <>
-      <ItemPageComponent machineKey={machineSlug} />
+      <ItemPageComponent machine={machine} />
     </>
   );
 }
