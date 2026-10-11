@@ -5,21 +5,21 @@ import {
   SectionContent,
 } from "@/components/features/section/index.section";
 import {
-  IconArrowRight,
-  IconPlayerPauseFilled,
-  IconPlayerPlayFilled,
-} from "@tabler/icons-react";
-import { useRef, useState } from "react";
-import type { IMachine } from "../../data/static/machines/machines.types";
-import {
   List,
   ListCard,
   ListCardHeader,
   ListCardTitle,
   ListItem,
-} from "../ui/list";
-import { Separator } from "../ui/separator";
-import Tag from "../ui/tag";
+} from "@/components/ui/list";
+import { Separator } from "@/components/ui/separator";
+import Tag from "@/components/ui/tag";
+import type { IMachine } from "@/data/static/machines/machines.types";
+import {
+  IconArrowRight,
+  IconPlayerPauseFilled,
+  IconPlayerPlayFilled,
+} from "@tabler/icons-react";
+import { useRef, useState } from "react";
 
 interface IMachineVideoFrameProps {
   videoUrl: string;

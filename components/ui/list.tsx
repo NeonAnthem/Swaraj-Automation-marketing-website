@@ -1,44 +1,82 @@
 import { cn } from "@/lib/utils";
 import { ComponentProps } from "react";
 
-function ListCard({ className, children }: ComponentProps<"div">) {
-  return <div className={cn("space-y-2 my-2 py-3", className)}>{children}</div>;
-}
-
-function ListCardHeader({ className, children }: ComponentProps<"div">) {
-  return <div className={cn("mt-2 mb-4", className)}>{children}</div>;
-}
-
-function List({ className, children }: ComponentProps<"ul">) {
-  return <ul className={cn("list-none space-y-3", className)}>{children}</ul>;
-}
-
-function ListCardTitle({ className, children }: ComponentProps<"h4">) {
+function ListCard({ className, children, ...props }: ComponentProps<"div">) {
   return (
-    <h4 className={cn("text-2xl tracking-tighter", className)}>{children}</h4>
+    <div className={cn("space-y-2 my-2 py-3", className)} {...props}>
+      {children}
+    </div>
   );
 }
 
-function ListCardDescription({ className, children }: ComponentProps<"div">) {
-  return <p className={cn("text-muted-foreground", className)}>{children}</p>;
+function ListCardHeader({
+  className,
+  children,
+  ...props
+}: ComponentProps<"div">) {
+  return (
+    <div className={cn("mt-2 mb-4", className)} {...props}>
+      {children}
+    </div>
+  );
 }
 
-function ListItem({ className, children }: ComponentProps<"li">) {
+function List({ className, children, ...props }: ComponentProps<"ul">) {
+  return (
+    <ul className={cn("list-none space-y-3", className)} {...props}>
+      {children}
+    </ul>
+  );
+}
+
+function ListCardTitle({
+  className,
+  children,
+  ...props
+}: ComponentProps<"h4">) {
+  return (
+    <h4 className={cn("text-2xl tracking-tighter", className)} {...props}>
+      {children}
+    </h4>
+  );
+}
+
+function ListCardDescription({
+  className,
+  children,
+  ...props
+}: ComponentProps<"p">) {
+  return (
+    <p className={cn("text-muted-foreground", className)} {...props}>
+      {children}
+    </p>
+  );
+}
+
+function ListItem({ className, children, ...props }: ComponentProps<"li">) {
   return (
     <li
       className={cn(
         "flex items-center gap-1 text-base md:text-lg text-foreground/60 tracking-tighter leading-[0.98] ml-1",
         className,
       )}
+      {...props}
     >
       {children}
     </li>
   );
 }
 
-function ListItemMarker({ className, children }: ComponentProps<"span">) {
+function ListItemMarker({
+  className,
+  children,
+  ...props
+}: ComponentProps<"span">) {
   return (
-    <span className={cn("size-1.5 bg-foreground/60 rounded-full", className)}>
+    <span
+      className={cn("size-1.5 bg-foreground/60 rounded-full", className)}
+      {...props}
+    >
       {children}
     </span>
   );

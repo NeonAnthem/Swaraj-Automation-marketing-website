@@ -1,6 +1,6 @@
 import { ItemPageComponent } from "@/components/templates/item-page";
 import { MACHINES_MAP } from "@/data/static/machines/machines";
-import { slugToSnakeCase } from "@/utils/case-converter";
+import { slugToSnakeCase, toKebabCase } from "@/utils/case-converter";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -15,7 +15,9 @@ interface INextPageProps {
 }
 
 export async function generateStaticParams() {
-  const machines: { slug: string }[] = [{ slug: "deep" }];
+  const machines: { slug: string }[] = Object.keys(MACHINES_MAP).map((key) => ({
+    slug: toKebabCase(key),
+  }));
   return machines?.map((machine) => ({
     slug: machine.slug,
   }));
