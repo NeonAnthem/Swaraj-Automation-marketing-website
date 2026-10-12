@@ -7,6 +7,16 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "./button";
 
+function ItemCardGridWrapper({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-4 gap-2">{children}</div>
+  );
+}
+
+function ItemCardWrapper({ children }: { children: React.ReactNode }) {
+  return <div className="max-w-96 w-full rounded-sm">{children}</div>;
+}
+
 export interface IItem {
   image: string;
   title: string;
@@ -16,7 +26,12 @@ export interface IItem {
 function ItemImageBleedCard({ item }: { item: IItem }) {
   const router = useRouter();
   return (
-    <div role="link" tabIndex={0} onKeyDown={() => {if (item.href) router.push(item.href)}}
+    <div
+      role="link"
+      tabIndex={0}
+      onKeyDown={() => {
+        if (item.href) router.push(item.href);
+      }}
       onClick={() => {
         if (item?.href) {
           router.push(item.href);
@@ -35,10 +50,8 @@ function ItemImageBleedCard({ item }: { item: IItem }) {
       />
       <div className="absolute inset-0 h-full bg-linear-to-b from-black/80 to-black/20" />
       {/* Block */}
-      <div className="absolute top-0 left-0 p-4">
-        <p className="text-3xl font-medium text-white max-w-[80%]">
-          {item.title}
-        </p>
+      <div className="absolute top-0 left-0 p-4 text-start">
+        <p className="text-3xl font-medium text-white">{item.title}</p>
       </div>
       {/* end Block */}
     </div>
@@ -124,4 +137,9 @@ function ItemProductCard({ item }: { item: IProductItem }) {
   );
 }
 
-export { ItemImageBleedCard, ItemProductCard };
+export {
+  ItemCardGridWrapper,
+  ItemCardWrapper,
+  ItemImageBleedCard,
+  ItemProductCard,
+};
