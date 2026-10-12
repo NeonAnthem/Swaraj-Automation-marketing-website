@@ -23,6 +23,10 @@ const NAVMENUS: INavbarItems[] = [
             href: "/machines/deep-hole-gun-drilling-machine",
           },
           {
+            label: "Micro Gun Drilling Machine",
+            href: "/machines/micro-gun-drilling-machine",
+          },
+          {
             label: "Pellet Die Gun Drilling Machine",
             href: "/machines/pellet-die-gun-drilling-machine",
           },
