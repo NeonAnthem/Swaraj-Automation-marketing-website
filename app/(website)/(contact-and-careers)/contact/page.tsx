@@ -1,5 +1,6 @@
 import { ContactCard } from "@/components/cards/contact-card";
 import WelcomeBanner from "@/components/cards/welcome-card";
+import TransparentNavigation from "@/components/features/navigation/hooks/use-transparent-navigation";
 import { Section } from "@/components/features/section/element.section";
 import { SectionContent } from "@/components/features/section/index.section";
 import { Button } from "@/components/ui/button";
@@ -11,6 +12,7 @@ import { IconMail, IconMapPin, IconPhone } from "@tabler/icons-react";
 export default function ContactPage() {
   return (
     <>
+      <TransparentNavigation />
       <Section
         className={"relative min-h-[80vh] flex items-center justify-center"}
       >
@@ -28,12 +30,12 @@ export default function ContactPage() {
               {
                 icon: IconMail,
                 label: "Email",
-                value: "shashank@swarajautomation.in",
+                value: "sales@swarajautomation.in",
               },
               {
                 icon: IconPhone,
                 label: "Phone",
-                value: "+91 98225-03630",
+                value: "+91 (808)-701-6320",
               },
               {
                 icon: IconMapPin,

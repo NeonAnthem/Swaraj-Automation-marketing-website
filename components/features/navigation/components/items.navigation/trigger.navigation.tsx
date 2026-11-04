@@ -17,7 +17,7 @@ function NavigationItemTrigger({ ...item }: INavbarItems) {
       <NavigationMenu.Link
         href={item?.href}
         className={
-          "pr-8 relative flex items-center gap-1 w-max text-white text-nowrap [&>svg]:text-foreground [&>svg]:size-4 cursor-pointer font-medium"
+          "pr-8 relative flex items-center gap-1 w-max text-white group-data-[solid=true]/nav:text-foreground text-nowrap [&>svg]:text-foreground [&>svg]:size-4 cursor-pointer font-medium"
         }
       >
         {item.label}
@@ -48,7 +48,7 @@ function NavigationItemTrigger({ ...item }: INavbarItems) {
           <div className="relative">
             <CTALink
               isHovered={isHovered}
-              className="cursor-default! text-white [&>svg]:text-white"
+              className="cursor-default! text-white [&>svg]:text-white group-data-[solid=true]/nav:text-foreground group-data-[solid=true]/nav:[&>svg]:text-foreground"
             >
               {item.label}
               <NavigationMenu.Icon

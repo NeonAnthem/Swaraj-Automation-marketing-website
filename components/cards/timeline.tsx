@@ -10,27 +10,10 @@ import { type CSSProperties, useRef, useSyncExternalStore } from "react";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-const monthOrder = {
-  January: 1,
-  February: 2,
-  March: 3,
-  April: 4,
-  May: 5,
-  June: 6,
-  July: 7,
-  August: 8,
-  September: 9,
-  October: 10,
-  November: 11,
-  December: 12,
-} as const;
-
-type Month = keyof typeof monthOrder;
-
 type JourneyItem = {
   id: string;
   year: string;
-  month: Month;
+  title: string;
   content: string;
 };
 
@@ -81,61 +64,82 @@ function usePrefersReducedMotion() {
 
 const topJourneyData: JourneyItem[] = [
   {
-    id: "2020-march",
-    year: "2020",
-    month: "March",
+    id: "1990",
+    year: "1990",
+    title: "Where It Began",
+    content: "CONUCO Machines started with SPM Manufacturing",
+  },
+  {
+    id: "2003",
+    year: "2003",
+    title: "First Gun Drilling Machine",
     content:
-      "Signal research turns scattered notes into a clear product thesis",
+      "Both companies combinedly developed the first Pellet Die Gun Drilling Machine",
   },
   {
-    id: "2021-july",
-    year: "2021",
-    month: "July",
-    content: "Founding release ships with the first live customer journeys",
+    id: "2012",
+    year: "2012",
+    title: "Industry Solutions",
+    content:
+      "SPM Solutions developments for the Automobile, Pellet Die and Oil & Gas industries",
   },
   {
-    id: "2023-april",
+    id: "2018",
+    year: "2018",
+    title: "New Facility",
+    content:
+      "New 12000 sq ft facility developed with Tool Room, Quality Room, Over head crane & other departments",
+  },
+  {
+    id: "2023",
     year: "2023",
-    month: "April",
-    content: "Automation layer connects insight, publishing, and sales motion",
-  },
-  {
-    id: "2026-may",
-    year: "2026",
-    month: "May",
-    content: "New markets open with localized launches and faster onboarding",
+    title: "Engimech Expo",
+    content:
+      "Participated in Engimech Expo Gandhinagar displaying standardised gun drilling machine solutions for Automobile, Medical, Die Mould industries",
   },
 ];
 
 const bottomJourneyData: JourneyItem[] = [
   {
-    id: "2020-november",
-    year: "2020",
-    month: "November",
-    content: "Prototype sprint validates the experience with real operators",
+    id: "1997",
+    year: "1997",
+    title: "Retrofitting Roots",
+    content:
+      "Swaraj Automation started with Machine Retrofitting & Reconditioning",
   },
   {
-    id: "2022-october",
-    year: "2022",
-    month: "October",
-    content: "Community feedback reshapes the roadmap into sharper releases",
+    id: "2008",
+    year: "2008",
+    title: "Merger CONUCO x Swaraj",
+    content: "Companies merged & since then known as Swaraj Automation",
   },
   {
-    id: "2025-september",
+    id: "2015",
+    year: "2015",
+    title: "Global Market Entry",
+    content:
+      "Exported its first ever machine, a Pellet Die Gun Drilling machine, to South Korea",
+  },
+  {
+    id: "2020-2021",
+    year: "2020-2021",
+    title: "Standardised Solutions",
+    content:
+      "Development of standardised Gun Drilling Machine solutions catering to different industries",
+  },
+  {
+    id: "2025",
     year: "2025",
-    month: "September",
-    content: "Companion mobile workflows make the timeline travel-ready",
+    title: "IMTEX Bangalore",
+    content:
+      "Participated in IMTEX Bangalore with 1.2mm gun drilling capacity machines",
   },
 ];
 
 const allJourneyItems: JourneyItem[] = [
   ...topJourneyData,
   ...bottomJourneyData,
-].sort((a, b) => {
-  const yearDiff = Number(a.year) - Number(b.year);
-  if (yearDiff !== 0) return yearDiff;
-  return monthOrder[a.month] - monthOrder[b.month];
-});
+].sort((a, b) => parseInt(a.year, 10) - parseInt(b.year, 10));
 
 export default function Timeline({
   title = "Product Storyline",
@@ -157,10 +161,13 @@ export default function Timeline({
   const normalizedDuration = Math.max(0.2, animationDuration);
   const sectionStyle = {
     color: textColor,
-    backgroundColor,
+    backgroundImage: `linear-gradient(to bottom, transparent var(--pull), ${backgroundColor} var(--pull))`,
   } satisfies CSSProperties;
   const activeStyle = {
     backgroundColor: activeColor,
+  } satisfies CSSProperties;
+  const yearStyle = {
+    color: activeColor,
   } satisfies CSSProperties;
   const mutedTextStyle = {
     color: mutedTextColor,
@@ -174,8 +181,8 @@ export default function Timeline({
 
       const isTablet = window.innerWidth >= 642 && window.innerWidth <= 1024;
       const isMobile = window.innerWidth < 642;
-      const slidePercent = isTablet ? -60 : isMobile ? -57 : -65;
-      const lineWidth = isTablet ? "75%" : isMobile ? "65%" : "98%";
+      const slidePercent = isTablet ? -88 : isMobile ? -99 : -72;
+      const lineWidth = isTablet ? "75%" : isMobile ? "80%" : "98%";
       const lineStart = isTablet ? "top 20%" : isMobile ? "top 30%" : "top 25%";
       const slideEnd = isMobile ? "82% 50%" : "92% bottom";
       const lineEnd = isMobile
@@ -337,32 +344,41 @@ export default function Timeline({
       const positions: PositionRange[] =
         window.innerWidth < 642
           ? [
-              [22, 32],
-              [28, 38],
-              [36, 46],
-              [45, 55],
-              [52, 62],
-              [60, 70],
-              [69, 79],
+              [20, 28],
+              [24, 32],
+              [29, 37],
+              [34, 42],
+              [39, 47],
+              [44, 52],
+              [49, 57],
+              [54, 62],
+              [59, 67],
+              [64, 72],
             ]
           : window.innerWidth >= 642 && window.innerWidth <= 1024
             ? [
-                [16, 27],
-                [24, 36],
-                [35, 47],
-                [45, 57],
-                [55, 67],
-                [62, 74],
-                [70, 82],
+                [16, 26],
+                [21, 31],
+                [26, 36],
+                [31, 41],
+                [36, 46],
+                [41, 51],
+                [46, 56],
+                [51, 61],
+                [56, 66],
+                [61, 71],
               ]
             : [
-                [6, 26],
-                [16, 36],
-                [26, 46],
-                [35, 55],
-                [45, 65],
-                [55, 75],
-                [65, 85],
+                [5, 22],
+                [12, 29],
+                [19, 36],
+                [26, 43],
+                [33, 50],
+                [40, 57],
+                [47, 64],
+                [54, 71],
+                [61, 78],
+                [68, 85],
               ];
 
       items.forEach((item, index) => {
@@ -389,15 +405,15 @@ export default function Timeline({
     <section
       ref={sectionRef}
       id="journey"
-      className="h-[200vw] max-[1025px]:h-[400vh] max-md:h-[400vh] w-full relative py-[7%]"
+      className="h-[230vw] max-[1025px]:h-[380vh] max-md:h-[380vh] w-full relative pointer-events-none [--pull:18vh] max-md:[--pull:30vh] -mt-(--pull)"
       style={sectionStyle}
     >
-      <div className="h-screen w-screen sticky top-[10%] pt-[5%] overflow-hidden max-md:top-[5%] ">
+      <div className="h-screen w-screen sticky top-0 flex items-center overflow-hidden">
         <div
           ref={wholeSliderRef}
-          className="mr-[2vw] flex h-[30vw] w-[240vw] items-center gap-[5vw] px-[5vw] max-[1025px]:h-[70vh] max-[1025px]:w-[400vw] max-[1025px]:flex-col max-[1025px]:items-start max-[1025px]:gap-[2vw] max-[1025px]:px-[5vw] max-md:h-[80vh] max-md:w-[800vw] max-md:px-[7vw]"
+          className="relative mr-[2vw] flex h-[34vw] w-[300vw] items-center gap-[5vw] px-[5vw] max-[1025px]:h-[70vh] max-[1025px]:w-[500vw] max-[1025px]:flex-col max-[1025px]:items-start max-[1025px]:gap-[2vw] max-[1025px]:px-[5vw] max-md:h-[64vh] max-md:w-[800vw] max-md:px-[7vw]"
         >
-          <div className="h-full w-[30vw] overflow-hidden rounded-[1vw] max-[1025px]:h-[40vw] max-[1025px]:w-[15%] max-[1025px]:rounded-[3vw] max-md:h-[65vw] max-md:w-[85vw] max-md:rounded-[5vw]">
+          <div className="h-full w-[30vw] overflow-hidden rounded-xs max-[1025px]:absolute max-[1025px]:left-[5vw] max-[1025px]:top-1/2 max-[1025px]:-translate-y-1/2 max-md:left-[7vw] max-[1025px]:h-[40vw] max-[1025px]:w-[15%] max-md:h-[65vw] max-md:w-[85vw]">
             <Image
               src={imageUrl}
               alt={imageAlt}
@@ -407,7 +423,7 @@ export default function Timeline({
             />
           </div>
 
-          <div className="relative h-full w-full  max-[1025px]:h-[50%]">
+          <div className="relative h-full w-full max-[1025px]:ml-[80vw] max-md:ml-[92vw]">
             <div className="w-full absolute left-0 top-[49%] translate-y-[-50%] flex items-center h-fit">
               <div
                 className="h-[.8vw] max-md:h-[2vw] max-md:w-[2vw] w-[.8vw] rounded-full max-[1025px]:w-[1.5vw] max-[1025px]:h-[1.5vw]"
@@ -447,14 +463,20 @@ export default function Timeline({
                       ></div>
                     </div>
 
-                    <div className="mt-[-1vw] space-y-[1vw] max-[1025px]:mt-[-1.5vw] max-md:mt-[-2vw]">
-                      <h4
-                        className={`title-${item.id}  text-[2.5vw] leading-none max-[1025px]:text-[5vw] max-md:text-[6.4vw]`}
+                    <div className="mt-[-1vw] space-y-[0.8vw] max-[1025px]:mt-[-1.5vw] max-md:mt-[-2vw]">
+                      <span
+                        className="block text-[1vw] font-medium uppercase tracking-[0.2em] max-[1025px]:text-[2vw] max-md:text-[3vw]"
+                        style={yearStyle}
                       >
-                        {item.year} {item.month}
+                        {item.year}
+                      </span>
+                      <h4
+                        className={`title-${item.id} pt-[0.4vw] text-[1.8vw] font-medium leading-[1.1] max-[1025px]:text-[3.8vw] max-md:text-[4.8vw]`}
+                      >
+                        {item.title}
                       </h4>
                       <p
-                        className={`description-${item.id} w-[90%] text-[1.5vw] leading-[1.15] max-[1025px]:w-[70%] max-[1025px]:text-[3.2vw] max-md:w-[90%] max-md:text-[4.8vw]`}
+                        className={`description-${item.id} w-full text-[1.25vw] leading-[1.15] max-[1025px]:w-full max-[1025px]:text-[2.2vw] max-md:w-full max-md:text-[3.3vw]`}
                         style={mutedTextStyle}
                       >
                         {item.content}
@@ -466,7 +488,7 @@ export default function Timeline({
             </div>
 
             <div className="h-1/2 flex items-center justify-start w-full">
-              <div className="w-[34%] pt-[2vw] max-md:pt-[5vw] max-md:w-[30%] h-full max-[1025px]:pt-[5vw]">
+              <div className="w-[20%] pt-[2vw] max-md:pt-[5vw] max-md:w-[30%] h-full max-[1025px]:pt-[5vw]">
                 <p
                   className=" text-[1.65vw] leading-none max-[1025px]:text-[3vw] max-md:text-[4.2vw]"
                   style={mutedTextStyle}
@@ -475,11 +497,11 @@ export default function Timeline({
                 </p>
               </div>
 
-              <div className="w-full flex h-full gap-x-[20vw] ml-[7vw] max-md:gap-x-[40vw] max-[1025px]:ml-0 max-md:ml-[7vw]">
+              <div className="w-full flex h-full gap-x-[20vw] ml-[23vw] max-md:gap-x-[40vw] max-[1025px]:ml-[38vw] max-[1025px]:gap-x-[15vw] max-md:ml-[7vw]">
                 {bottomJourneyData.map((item) => (
                   <div
                     key={`bottom-${item.id}`}
-                    className="relative h-full w-[25vw] px-[3vw]  max-[1025px]:flex max-[1025px]:w-[20%] max-[1025px]:flex-col max-[1025px]:justify-center max-[1025px]:px-[5vw] max-md:w-[70vw] max-md:px-[7vw]"
+                    className="relative h-full w-[25vw] px-[3vw]  max-[1025px]:flex max-[1025px]:w-[50vw] max-[1025px]:flex-col max-[1025px]:justify-center max-[1025px]:px-[5vw] max-md:w-[70vw] max-md:px-[7vw]"
                   >
                     <div className="w-full absolute left-0 bottom-[-1%] h-full">
                       <div
@@ -492,14 +514,20 @@ export default function Timeline({
                       ></div>
                     </div>
 
-                    <div className="flex h-full w-full flex-col justify-end space-y-[1vw]">
-                      <h4
-                        className={`title-${item.id}  text-[2.5vw] leading-none max-[1025px]:text-[5vw] max-md:text-[6.4vw]`}
+                    <div className="flex h-full w-full flex-col justify-end space-y-[0.8vw]">
+                      <span
+                        className="block text-[1vw] font-medium uppercase tracking-[0.2em] max-[1025px]:text-[2vw] max-md:text-[3vw]"
+                        style={yearStyle}
                       >
-                        {item.year} {item.month}
+                        {item.year}
+                      </span>
+                      <h4
+                        className={`title-${item.id} pt-[0.4vw] text-[1.8vw] font-medium leading-[1.1] max-[1025px]:text-[3.8vw] max-md:text-[4.8vw]`}
+                      >
+                        {item.title}
                       </h4>
                       <p
-                        className={`description-${item.id} w-[90%] text-[1.5vw] leading-[1.15] max-[1025px]:w-[70%] max-[1025px]:text-[3.2vw] max-md:w-[90%] max-md:text-[4.8vw]`}
+                        className={`description-${item.id} w-full text-[1.25vw] leading-[1.15] max-[1025px]:w-full max-[1025px]:text-[2.2vw] max-md:w-full max-md:text-[3.3vw]`}
                         style={mutedTextStyle}
                       >
                         {item.content}

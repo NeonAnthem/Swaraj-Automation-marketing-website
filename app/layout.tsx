@@ -22,6 +22,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${archivoFont.variable} ${geistMono.variable} ${archivoFont.className} ${interFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
@@ -43,3 +44,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     </html>
   );
 }
+
+// <!-- Google tag (gtag.js) -->
+// <script async src="https://www.googletagmanager.com/gtag/js?id=G-FLF6C9ZW3E"></script>
+// <script>
+//   window.dataLayer = window.dataLayer || [];
+//   function gtag(){dataLayer.push(arguments);}
+//   gtag('js', new Date());
+
+//   gtag('config', 'G-FLF6C9ZW3E');
+// </script>

@@ -1,54 +1,22 @@
 "use client";
 
+import type { IMachineImage } from "@/data/static/machines/machines.types";
 import { animate, motion, useMotionValue } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const items = [
-  {
-    id: 1,
-    url: "/assets/images/x_DSC_0011.jpg",
-    title: "A large body of water surrounded by mountains",
-  },
-  {
-    id: 2,
-    url: "/assets/images/x_DSC_0011.jpg",
-    title: "A large body of water surrounded by mountains",
-  },
-  {
-    id: 3,
-    url: "/assets/images/x_DSC_0011.jpg",
-    title: "A large body of water surrounded by mountains",
-  },
-  {
-    id: 4,
-    url: "/assets/images/x_DSC_0011.jpg",
-    title: "A large body of water surrounded by mountains",
-  },
-  {
-    id: 5,
-    url: "/assets/images/x_DSC_0011.jpg",
-    title: "A large body of water surrounded by mountains",
-  },
-  {
-    id: 6,
-    url: "/assets/images/x_DSC_0011.jpg",
-    title: "A large body of water surrounded by mountains",
-  },
-];
-
-const FULL_WIDTH_PX = 120;
-const COLLAPSED_WIDTH_PX = 35;
+const FULL_WIDTH_PX = 96;
+const COLLAPSED_WIDTH_PX = 32;
 const GAP_PX = 2;
 const MARGIN_PX = 2;
 
-function Thumbnails({
-  index,
-  setIndex,
-}: {
+interface IThumbnailsProps {
+  images: IMachineImage[];
   index: number;
   setIndex: (index: number) => void;
-}) {
+}
+
+function Thumbnails({ images, index, setIndex }: IThumbnailsProps) {
   const thumbnailsRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -74,7 +42,7 @@ function Thumbnails({
   return (
     <div
       ref={thumbnailsRef}
-      className="overflow-x-auto"
+      className="overflow-x-auto mx-auto"
       style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
     >
       <style>{`
@@ -82,10 +50,13 @@ function Thumbnails({
           display: none;
         }
       `}</style>
-      <div className="flex gap-0.5 h-20 pb-2" style={{ width: "fit-content" }}>
-        {items.map((item, i) => (
+      <div className="flex gap-0.5 h-16 pb-2" style={{ width: "fit-content" }}>
+        {images.map((image, i) => (
           <motion.button
-            key={item.id}
+            key={`${image.url}-${i}`}
+            type="button"
+            aria-label={`Show image ${i + 1}`}
+            aria-current={i === index}
             onClick={() => setIndex(i)}
             initial={false}
             animate={i === index ? "active" : "inactive"}
@@ -102,14 +73,16 @@ function Thumbnails({
               },
             }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="relative shrink-0 h-full overflow-hidden rounded"
+            className={`relative shrink-0 h-full overflow-hidden rounded-md transition-opacity ${
+              i === index ? "opacity-100" : "opacity-60 hover:opacity-100"
+            }`}
           >
             <Image
-              src={item.url}
-              alt={item.title}
-              width={FULL_WIDTH_PX}
-              height={FULL_WIDTH_PX}
-              className="w-full h-full object-cover pointer-events-none select-none"
+              src={image.url}
+              alt={image.alt}
+              fill
+              sizes={`${FULL_WIDTH_PX}px`}
+              className="object-cover pointer-events-none select-none"
               draggable={false}
             />
           </motion.button>
@@ -119,7 +92,13 @@ function Thumbnails({
   );
 }
 
-export default function ThumbnailsCarousel() {
+interface IThumbnailsCarouselProps {
+  images?: IMachineImage[];
+}
+
+export default function ThumbnailsCarousel({
+  images = [],
+}: IThumbnailsCarouselProps) {
   const [index, setIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -139,12 +118,14 @@ export default function ThumbnailsCarousel() {
     }
   }, [index, x, isDragging]);
 
+  if (images.length === 0) return null;
+
   return (
-    <div className="w-full max-w-3xl mx-auto p-4 lg:p-10">
+    <div className="w-full">
       <div className="flex flex-col gap-3">
         {/* Main Carousel */}
         <div
-          className="relative overflow-hidden rounded-lg bg-gray-100"
+          className="relative overflow-hidden rounded-2xl border border-border bg-muted"
           ref={containerRef}
         >
           <motion.div
@@ -171,20 +152,23 @@ export default function ThumbnailsCarousel() {
               }
 
               // Clamp index
-              newIndex = Math.max(0, Math.min(items.length - 1, newIndex));
+              newIndex = Math.max(0, Math.min(images.length - 1, newIndex));
               setIndex(newIndex);
             }}
             style={{ x }}
           >
-            {items.map((item) => (
-              <div key={item.id} className="shrink-0 w-full h-100">
+            {images.map((image, i) => (
+              <div
+                key={`${image.url}-${i}`}
+                className="relative shrink-0 w-full aspect-4/3"
+              >
                 <Image
-                  src={item.url}
-                  alt={item.title}
-                  className="w-full h-full object-cover rounded-lg select-none pointer-events-none"
+                  src={image.url}
+                  alt={image.alt}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, 100vw"
+                  className="object-cover select-none pointer-events-none"
                   draggable={false}
-                  width={FULL_WIDTH_PX}
-                  height={FULL_WIDTH_PX}
                 />
               </div>
             ))}
@@ -192,17 +176,19 @@ export default function ThumbnailsCarousel() {
 
           {/* Previous Button */}
           <motion.button
+            type="button"
+            aria-label="Previous image"
             disabled={index === 0}
             onClick={() => setIndex((i) => Math.max(0, i - 1))}
-            className={`absolute left-4 text-black top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-transform z-10
+            className={`absolute left-3 text-black top-1/2 -translate-y-1/2 size-9 rounded-full flex items-center justify-center shadow-md transition-transform z-10
               ${
                 index === 0
-                  ? "opacity-40 cursor-not-allowed"
-                  : "bg-white hover:scale-110 hover:opacity-100 opacity-70"
+                  ? "bg-white/50 opacity-40 cursor-not-allowed"
+                  : "bg-white hover:scale-110 hover:opacity-100 opacity-80"
               }`}
           >
             <svg
-              className="w-6 h-6"
+              className="size-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -218,17 +204,19 @@ export default function ThumbnailsCarousel() {
 
           {/* Next Button */}
           <motion.button
-            disabled={index === items.length - 1}
-            onClick={() => setIndex((i) => Math.min(items.length - 1, i + 1))}
-            className={`absolute text-black right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-transform z-10
+            type="button"
+            aria-label="Next image"
+            disabled={index === images.length - 1}
+            onClick={() => setIndex((i) => Math.min(images.length - 1, i + 1))}
+            className={`absolute text-black right-3 top-1/2 -translate-y-1/2 size-9 rounded-full flex items-center justify-center shadow-md transition-transform z-10
               ${
-                index === items.length - 1
-                  ? "opacity-40 cursor-not-allowed"
-                  : "bg-white hover:scale-110 hover:opacity-100 opacity-70"
+                index === images.length - 1
+                  ? "bg-white/50 opacity-40 cursor-not-allowed"
+                  : "bg-white hover:scale-110 hover:opacity-100 opacity-80"
               }`}
           >
             <svg
-              className="w-6 h-6"
+              className="size-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -243,12 +231,12 @@ export default function ThumbnailsCarousel() {
           </motion.button>
 
           {/* Image Counter */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
-            {index + 1} / {items.length}
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-xs backdrop-blur-sm">
+            {index + 1} / {images.length}
           </div>
         </div>
 
-        <Thumbnails index={index} setIndex={setIndex} />
+        <Thumbnails images={images} index={index} setIndex={setIndex} />
       </div>
     </div>
   );

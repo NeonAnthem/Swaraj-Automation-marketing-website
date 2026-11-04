@@ -29,13 +29,13 @@ function MobileNavigationPanel({
     <div
       aria-hidden={!isMobileOpen}
       className={cn(
-        "fixed inset-x-0 top-12 bottom-0 bg-black z-90 overflow-y-auto transition-[opacity,transform] duration-300 md:hidden",
+        "fixed inset-x-0 top-[calc(3rem+var(--announcement-height,0px))] bottom-0 dark bg-background text-primary z-90 overflow-y-auto transition-[opacity,transform] duration-300 md:hidden",
         isMobileOpen
           ? "translate-y-0 opacity-100"
           : "-translate-y-2 opacity-0 pointer-events-none",
       )}
     >
-      <div className="flex flex-col min-h-full px-4 py-4 font-heading text-white">
+      <div className="flex flex-col min-h-full px-4 py-4 font-heading text-primary">
         {/* Top level Navigation items */}
         <nav className="flex-1">
           {menus.map((item) =>
@@ -53,12 +53,12 @@ function MobileNavigationPanel({
               <Link
                 key={item.id}
                 href={item.href ?? "#"}
-                className="flex items-center justify-between py-4 border-b border-white/10 text-2xl font-medium"
+                className="flex items-center justify-between py-4 border-b border-primary/10 text-2xl font-medium"
                 onClick={onClose}
                 aria-label={item.label}
               >
                 {item.label}
-                <IconArrowUpRight className="size-5 text-white/40" />
+                <IconArrowUpRight className="size-5 text-primary/40" />
               </Link>
             ),
           )}

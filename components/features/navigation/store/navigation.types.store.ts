@@ -1,5 +1,6 @@
 // -- Navigation Context Store ----
 
+import { IAnnouncement } from "../types/announcement.types";
 import { INavbarItems } from "../types/navbar.types";
 
 /**
@@ -13,6 +14,7 @@ type INavigationStore = INavigationState &
 interface INavigationState {
   menus: INavbarItems[];
   cta: INavigationCTA;
+  announcement: IAnnouncement | null;
 }
 
 interface INavigationCTA {
@@ -36,14 +38,20 @@ type INavigationSystemStore = INavigationSystemState & INavigationSystemAction;
 
 interface INavigationSystemState {
   isDark: boolean;
+  isTransparent: boolean;
+  isScrolled: boolean;
   isOpen: boolean;
   isMobileOpen: boolean;
+  isAnnouncementOpen: boolean;
   activeChildId: string | null;
 }
 interface INavigationSystemAction {
   setIsDark: (value: boolean) => void;
+  setIsTransparent: (value: boolean) => void;
+  setIsScrolled: (value: boolean) => void;
   setIsOpen: (value: boolean) => void;
   setIsMobileOpen: (value: boolean) => void;
+  setIsAnnouncementOpen: (value: boolean) => void;
   setActiveChildId: (id: string | null) => void;
 }
 

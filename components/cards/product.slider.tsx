@@ -32,55 +32,7 @@ export interface IProductSlider {
   items: IProductSliderItem[];
 }
 
-const data = [
-  {
-    id: "shadcn-ui",
-    title: "shadcn/ui: Building a Modern Component Library",
-    description:
-      "Explore how shadcn/ui revolutionized React component libraries by providing a unique approach to component distribution and customization, making it easier for developers to build beautiful, accessible applications.",
-    href: "https://ui.shadcn.com",
-    image:
-      "https://cdn.21st.dev/assets/mirror/4e/4eb8a143da7e1e0cc7b6005fb7d61fc853322b90f24e29726de26fb7c41357ee.jpg",
-  },
-  {
-    id: "tailwind",
-    title: "Tailwind CSS: The Utility-First Revolution",
-    description:
-      "Discover how Tailwind CSS transformed the way developers style their applications, offering a utility-first approach that speeds up development while maintaining complete design flexibility.",
-    href: "https://tailwindcss.com",
-    image:
-      "https://cdn.21st.dev/assets/mirror/57/57bb4cd63c5b1957b3799f5f782fba3f1671d0a3a02349eee69a2b62b59bb258.jpg",
-  },
-  {
-    id: "astro",
-    title: "Astro: The All-in-One Web Framework",
-    description:
-      "Learn how Astro's innovative 'Islands Architecture' and zero-JS-by-default approach is helping developers build faster websites while maintaining rich interactivity where needed.",
-    href: "https://astro.build",
-    image:
-      "https://cdn.21st.dev/assets/mirror/c6/c62ec1d11df3109a5c2ed7862993577747f114b94f8674f1e4133634e5ea72aa.jpg",
-  },
-  {
-    id: "react",
-    title: "React: Pioneering Component-Based UI",
-    description:
-      "See how React continues to shape modern web development with its component-based architecture, enabling developers to build complex user interfaces with reusable, maintainable code.",
-    href: "https://react.dev",
-    image:
-      "https://cdn.21st.dev/assets/mirror/4d/4d713056e68142cabf897098f3204cf4e3205b9030691a5cdcfe4c66e971cee1.jpg",
-  },
-  {
-    id: "nextjs",
-    title: "Next.js: The React Framework for Production",
-    description:
-      "Explore how Next.js has become the go-to framework for building full-stack React applications, offering features like server components, file-based routing, and automatic optimization.",
-    href: "https://nextjs.org",
-    image:
-      "https://cdn.21st.dev/assets/mirror/ce/ce3f6a67c5581a8723f56c8956303da2c096b12647c81eaef42cdd002cb4561e.jpg",
-  },
-];
-
-const ProductSlider = ({ items = data }: IProductSlider) => {
+const ProductSlider = ({ items }: IProductSlider) => {
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
@@ -104,9 +56,6 @@ const ProductSlider = ({ items = data }: IProductSlider) => {
 
   return (
     <>
-      <div className="container mx-auto">
-        <div className="mb-2 flex items-end justify-between"></div>
-      </div>
       <div className="w-full">
         <Carousel
           setApi={setCarouselApi}

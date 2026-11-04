@@ -35,7 +35,7 @@ function MobileNavigationAccordion({
   );
 
   return (
-    <div className="border-b border-white/10">
+    <div className="border-b border-primary/10">
       {/* Accordion Trigger */}
       <button
         className="flex items-center justify-between w-full py-4 text-2xl font-medium text-left"
@@ -45,7 +45,7 @@ function MobileNavigationAccordion({
         {item.label}
         <IconChevronDown
           className={cn(
-            "size-5 text-white/40 transition-transform duration-200",
+            "size-5 text-primary/40 transition-transform duration-200",
             { "rotate-180": isExpanded },
           )}
         />
@@ -61,7 +61,7 @@ function MobileNavigationAccordion({
       >
         {listSections.map((section, si) => (
           <div key={si} className={cn({ "mt-4": si > 0 })}>
-            <p className="text-xs uppercase tracking-widest text-white/40 font-body mb-2 px-1">
+            <p className="text-xs uppercase tracking-widest text-primary/40 font-body mb-2 px-1">
               {section.heading}
             </p>
             <div className="flex flex-col">
@@ -73,17 +73,17 @@ function MobileNavigationAccordion({
                   onClick={onClose}
                   aria-label={link.label}
                 >
-                  <span className="text-white/30 text-sm font-body w-6 shrink-0 pt-0.5">
+                  <span className="text-primary/30 text-sm font-body w-6 shrink-0 pt-0.5">
                     {new Intl.NumberFormat("en-In", {
                       minimumIntegerDigits: 2,
                     }).format(li + 1)}
                   </span>
                   <div>
-                    <p className="text-base font-medium text-white/80 group-hover:text-white transition-colors">
+                    <p className="text-base font-medium text-primary/80 group-hover:text-primary transition-colors">
                       {link.label}
                     </p>
                     {link.description && (
-                      <p className="text-sm text-white/40 font-body leading-snug">
+                      <p className="text-sm text-primary/40 font-body leading-snug">
                         {link.description}
                       </p>
                     )}

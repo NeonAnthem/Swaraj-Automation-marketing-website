@@ -1,4 +1,5 @@
 import { INavbarItems } from "@/components/features/navigation/types/navbar.types";
+import { SOLUTIONS_LIST } from "@/data/static/solutions";
 
 const NAVMENUS: INavbarItems[] = [
   {
@@ -100,7 +101,18 @@ const NAVMENUS: INavbarItems[] = [
     id: "solutions",
     label: "Solutions",
     position: "b",
-    child: [],
+    child: [
+      {
+        contentType: "list",
+        heading: "All Solutions",
+        position: "b",
+        span: 3,
+        children: SOLUTIONS_LIST.map((solution) => ({
+          label: solution.title,
+          href: solution.href,
+        })),
+      },
+    ],
   },
   {
     id: "services",

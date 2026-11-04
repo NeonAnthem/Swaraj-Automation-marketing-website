@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { INavbarState, NavbarStoreProvider } from "@/store/navbar-store";
 import Link from "next/link";
-import { PropsWithChildren } from "react";
+import { ComponentProps, PropsWithChildren } from "react";
 
 function NavbarProvider({
   children,
@@ -27,13 +27,15 @@ function Nav({
 function NavBar({
   children,
   className,
-}: PropsWithChildren & { className?: string }) {
+  ...props
+}: PropsWithChildren & ComponentProps<"div">) {
   return (
     <div
       className={cn(
-        "flex items-center mx-auto justify-between fixed top-0 w-full h-12 z-100 px-2 md:px-12 transition-colors duration-300 text-foreground",
+        "flex items-center mx-auto justify-between fixed top-(--announcement-height,0px) w-full h-12 z-100 px-2 md:px-12 transition-[color,background-color,top] duration-300 text-foreground",
         className,
       )}
+      {...props}
     >
       {children}
     </div>

@@ -1,4 +1,4 @@
-import { ItemPageComponent } from "@/components/templates/item-page";
+import { ItemPageComponent } from "@/components/templates/product-page";
 import { MACHINES_MAP } from "@/data/static/machines/machines";
 import { slugToSnakeCase, toKebabCase } from "@/utils/case-converter";
 import { Metadata } from "next";
@@ -54,9 +54,5 @@ export default async function MachinesSlugPage({ params }: INextPageProps) {
     return notFound(); // or handle the case when the machine is not found
   }
 
-  return (
-    <>
-      <ItemPageComponent machine={machine} />
-    </>
-  );
+  return <ItemPageComponent machine={machine} />;
 }

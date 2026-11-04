@@ -21,7 +21,7 @@ function NavigationDesktopAdapter({ menus }: INavigationItemsAdapterProps) {
           {/* Navigation Root Item list */}
           <NavigationMenu.List
             className={
-              "relative group/list flex flex-1 list-none items-center justify-center"
+              "relative group/list flex flex-1 gap-8 list-none items-center justify-center"
             }
           >
             {/* Top level Navigation items */}

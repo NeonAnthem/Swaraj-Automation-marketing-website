@@ -14,6 +14,9 @@ const NAV_HEIGHT = 48;
  */
 export default function NavigationDarkObserver() {
   const setIsDark = useNavigationStore((s) => s._system.setIsDark);
+  const isAnnouncementOpen = useNavigationStore(
+    (s) => s._system.isAnnouncementOpen,
+  );
   const pathname = usePathname();
 
   useEffect(() => {
@@ -31,7 +34,14 @@ export default function NavigationDarkObserver() {
         return;
       }
 
-      // rootMargin shrinks the viewport root to [NAV_HEIGHT, NAV_HEIGHT + 1].
+      // The navbar sits below the announcement banner (0 when absent/hidden).
+      const bannerHeight =
+        document
+          .querySelector("[data-announcement-banner]")
+          ?.getBoundingClientRect().height ?? 0;
+      const navBottom = NAV_HEIGHT + bannerHeight;
+
+      // rootMargin shrinks the viewport root to [navBottom, navBottom + 1].
       observer = new IntersectionObserver(
         (entries) => {
           for (const entry of entries) {
@@ -41,8 +51,8 @@ export default function NavigationDarkObserver() {
           setIsDark(intersecting.size > 0);
         },
         {
-          rootMargin: `-${NAV_HEIGHT}px 0px ${
-            NAV_HEIGHT + 1 - window.innerHeight
+          rootMargin: `-${navBottom}px 0px ${
+            navBottom + 1 - window.innerHeight
           }px 0px`,
         },
       );
@@ -62,7 +72,7 @@ export default function NavigationDarkObserver() {
       window.removeEventListener("resize", onResize);
       observer?.disconnect();
     };
-  }, [pathname, setIsDark]);
+  }, [pathname, setIsDark, isAnnouncementOpen]);
 
   return null;
 }
