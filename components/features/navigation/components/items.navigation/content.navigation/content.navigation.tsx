@@ -10,6 +10,7 @@ import { NavigationMenu } from "@base-ui/react";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import { motion, stagger, type Variants } from "motion/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { PropsWithChildren, useState } from "react";
 import { useNavigationStore } from "../../../providers/navigation.store.provider";
@@ -117,6 +118,7 @@ function NavigationContentBlock({ ...block }: INavbarContent) {
 }
 
 function NewsBlock() {
+  // const news = use();
   return (
     <div className="flex flex-col cols-span-1 p-2 h-full sm:-m-4">
       {/* Title */}
@@ -143,9 +145,7 @@ function NewsBlock() {
               className={cn(
                 "text-primary text-xl tracking-tighter font-medium line-clamp-1",
               )}
-            >
-              Swaraj in CMPL expo 2026
-            </p>
+            ></p>
             <p className="text-accent-foreground/70! line-clamp-3 text-base tracking-tighter leading-[1.2]">
               Come and meet us at the 2026 CMPL expo in Delhi, India. We will be
               showcasing our latest innovations and products. Swaraj is a
@@ -156,10 +156,12 @@ function NewsBlock() {
 
           {/* CTA */}
           <div className="mt-auto h-max">
-            <CTALink className="text-lg">
-              Learn More
-              <IconArrowUpRight />
-            </CTALink>
+            <Link href="https://https://www.imtex.in/" target="_blank">
+              <CTALink className="text-lg">
+                Learn More
+                <IconArrowUpRight />
+              </CTALink>
+            </Link>
           </div>
           {/* end CTA */}
         </div>

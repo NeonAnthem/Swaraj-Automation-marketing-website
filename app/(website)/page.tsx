@@ -6,6 +6,7 @@ import {
 } from "@/components/cards/showcase.slider";
 import Timeline from "@/components/cards/timeline";
 import { CinematicLogoCloud } from "@/components/cinematic-logo-cloud";
+import TransparentNavigation from "@/components/features/navigation/hooks/use-transparent-navigation";
 import {
   Section,
   SectionContent,
@@ -156,6 +157,7 @@ export default function Home() {
 
   return (
     <>
+      <TransparentNavigation />
       <Section spacing="none" className={"relative min-h-screen z-10"}>
         {/* Video */}
         <div className="absolute inset-0 w-full h-full -z-10">
@@ -176,7 +178,7 @@ export default function Home() {
         <SectionContent className={"z-100"}>
           <div className="text-start flex flex-col justify-center min-h-screen space-y-12">
             <div>
-              <h1 className="text-white text-7xl font-semibold tracking-tighter leading-[0.98]">
+              <h1 className="text-white text-[clamp(2.25rem,12vw,4.5rem)] sm:text-7xl font-semibold tracking-tighter leading-[0.98]">
                 Precision
                 <br />
                 manufacturing
@@ -285,7 +287,7 @@ export default function Home() {
 
       {/* Industries We Serve */}
       <Section>
-        <SectionHeader>
+        <SectionHeader className={"mb-10!"}>
           <SectionTitle className="font-medium tracking-tighter">
             Industries We Serve
           </SectionTitle>
@@ -296,13 +298,12 @@ export default function Home() {
         </SectionHeader>
 
         {/*  */}
-
-        <ShowcaseSlider items={demoIndustries} />
+        <ShowcaseSlider items={demoIndustries} loop={true} />
         {/*  */}
       </Section>
       {/* end Industries We Serve */}
       {/* Stats */}
-      <Section>
+      <Section spacing={"sm"}>
         <SectionHeader alignment={"center"}>
           {/* <SectionTitle className="font-medium tracking-tighter">
             Our Core Values
@@ -320,8 +321,8 @@ export default function Home() {
       {/* end Stats */}
 
       {/* Featured Products */}
-      <Section>
-        <SectionHeader>
+      <Section className={""}>
+        <SectionHeader className={"mb-10!"}>
           <SectionTitle className="font-medium tracking-tighter">
             Featured Products
           </SectionTitle>
@@ -360,16 +361,16 @@ export default function Home() {
       <Section>
         <Timeline
           imageUrl="/assets/images/place.jpg"
-          title="Swaraj's foundation"
+          title="Swraj's Story"
           activeColor="#9f1f24"
-          periodLabel="1997-2026"
+          periodLabel="1990-Present"
         />
       </Section>
       {/* end Timeline Section */}
 
       {/* CTA section */}
-      <Section spacing={"none"}>
-        <div className="relative w-full bg-[url(/assets/backgrounds/background.webp)] bg-cover bg-center h-180">
+      <Section spacing={"none"} className={""}>
+        <div className="relative w-full bg-[url(/assets/backgrounds/background.webp)] bg-cover bg-center h-96">
           {/* CTA Content */}
           <div className="container mx-auto flex flex-col justify-center h-full space-y-4">
             <div className="space-y-1">

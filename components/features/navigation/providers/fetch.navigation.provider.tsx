@@ -1,5 +1,7 @@
+import getAnnouncement from "@/data/queries/announcement/announcement.get";
 import getNavigationMenus from "@/data/queries/navigation/navigation.get";
 import { PropsWithChildren } from "react";
+import AnnouncementHead from "../components/announcement.head.navigation";
 import NavigationStoreProvider from "./navigation.store.provider";
 
 /**
@@ -9,11 +11,19 @@ import NavigationStoreProvider from "./navigation.store.provider";
  * @returns
  */
 export async function NavigationFetchProvider({ children }: PropsWithChildren) {
-  const { menus, cta } = await getNavigationMenus();
+  const [{ menus, cta }, announcement] = await Promise.all([
+    getNavigationMenus(),
+    getAnnouncement(),
+  ]);
 
   // Pass Fetched navigation data to store
   return (
-    <NavigationStoreProvider menus={menus} cta={cta}>
+    <NavigationStoreProvider
+      menus={menus}
+      cta={cta}
+      announcement={announcement}
+    >
+      <AnnouncementHead announcement={announcement} />
       {children}
     </NavigationStoreProvider>
   );

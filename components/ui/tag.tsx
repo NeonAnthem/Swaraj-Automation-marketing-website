@@ -28,7 +28,9 @@ const tagVariants = cva("flex flex-row items-center", {
 });
 
 interface ITagProps
-  extends VariantProps<typeof tagVariants>, ComponentProps<"div"> {}
+  extends VariantProps<typeof tagVariants>, ComponentProps<"div"> {
+  hasTag?: boolean;
+}
 
 export default function Tag({
   variant,
@@ -36,6 +38,7 @@ export default function Tag({
   textCase,
   className,
   children,
+  hasTag = true,
   ...props
 }: ITagProps) {
   return (
@@ -44,7 +47,7 @@ export default function Tag({
       {...props}
     >
       {/* Tag Identifier */}
-      <div className={"bg-primary size-2"}></div>
+      {hasTag && <div className={"bg-primary size-2"}></div>}
       {/* end Tag Identifier */}
 
       {/* Content */}

@@ -9,9 +9,7 @@ import { MobileNavigationTrigger } from "./components/trigger.mobile.navigation"
  * (root composer + trigger + panel), visible only below `md`.
  */
 function NavigationMobileAdapter({ menus }: INavigationItemsAdapterProps) {
-  const setIsMobileOpen = useNavigationStore(
-    (s) => s._system.setIsMobileOpen,
-  );
+  const setIsMobileOpen = useNavigationStore((s) => s._system.setIsMobileOpen);
 
   const handleClose = useCallback(() => {
     setIsMobileOpen(false);
@@ -21,20 +19,19 @@ function NavigationMobileAdapter({ menus }: INavigationItemsAdapterProps) {
   // Restore page scroll if the panel is open when the adapter unmounts
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(min-width: 768px)');
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
     const handleResize = () => {
       if (mediaQuery.matches) {
         document.documentElement.style.overflow = "";
         setIsMobileOpen(false);
       }
     };
-    mediaQuery.addEventListener('change', handleResize);
+    mediaQuery.addEventListener("change", handleResize);
     return () => {
-      mediaQuery.removeEventListener('change', handleResize);
+      mediaQuery.removeEventListener("change", handleResize);
       document.documentElement.style.overflow = "";
     };
   }, [setIsMobileOpen]);
-
 
   return (
     <>

@@ -23,6 +23,16 @@ const createNavigationStore = (
         })),
       setIsDark: (value: boolean) =>
         set((state) => ({ _system: { ...state._system, isDark: value } })),
+      setIsTransparent: (value: boolean) =>
+        set((state) => ({
+          _system: {
+            ...state._system,
+            isTransparent: value,
+            ...(value ? {} : { isDark: false, isScrolled: false }),
+          },
+        })),
+      setIsScrolled: (value: boolean) =>
+        set((state) => ({ _system: { ...state._system, isScrolled: value } })),
       setIsOpen: (value: boolean) =>
         set((state) => ({
           _system: { ...state._system, isDark: value, isOpen: value },
@@ -30,6 +40,10 @@ const createNavigationStore = (
       setIsMobileOpen: (value: boolean) =>
         set((state) => ({
           _system: { ...state._system, isMobileOpen: value },
+        })),
+      setIsAnnouncementOpen: (value: boolean) =>
+        set((state) => ({
+          _system: { ...state._system, isAnnouncementOpen: value },
         })),
     },
     updateMenus: (value) => set(() => ({ menus: value })),

@@ -21,6 +21,7 @@ export const NAVIGATIONSTORECONTEXT = createContext<
 interface INavigationStoreProviderProps extends PropsWithChildren {
   menus: INavbarItems[];
   cta: INavigationState["cta"];
+  announcement: INavigationState["announcement"];
 }
 
 /**
@@ -29,17 +30,22 @@ interface INavigationStoreProviderProps extends PropsWithChildren {
 function NavigationStoreProvider({
   menus,
   cta,
+  announcement,
   children,
 }: INavigationStoreProviderProps) {
   const defaultValue = {
     menus: menus,
     cta: cta,
+    announcement: announcement,
   };
   const _systemDefaultValue = {
     activeChildId: null,
     isDark: false,
+    isTransparent: false,
+    isScrolled: false,
     isOpen: false,
     isMobileOpen: false,
+    isAnnouncementOpen: true,
   };
 
   const [store] = useState(() =>

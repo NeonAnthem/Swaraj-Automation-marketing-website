@@ -24,11 +24,12 @@ export interface IShowcaseSliderItem {
 
 export interface IShowcaseSlider {
   title?: string;
+  loop?: boolean;
   description?: string;
   items: IShowcaseSliderItem[];
 }
 
-const ShowcaseSlider = ({ items = [] }: IShowcaseSlider) => {
+const ShowcaseSlider = ({ loop = false, items = [] }: IShowcaseSlider) => {
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
@@ -52,13 +53,11 @@ const ShowcaseSlider = ({ items = [] }: IShowcaseSlider) => {
 
   return (
     <>
-      <div className="container mx-auto">
-        <div className="mb-2 flex items-end justify-between"></div>
-      </div>
       <div className="w-full">
         <Carousel
           setApi={setCarouselApi}
           opts={{
+            loop: loop,
             breakpoints: {
               "(max-width: 768px)": {
                 dragFree: true,

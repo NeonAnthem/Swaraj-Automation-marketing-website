@@ -102,7 +102,7 @@ export default function Footer() {
               <h3 className="text-xs font-semibold uppercase text-muted-foreground">
                 {column.heading}
               </h3>
-              <ul className="mt-3 grid gap-3">
+              <ul className="mt-3 grid gap-1">
                 {column.links.map((link, index) => (
                   <li key={link.href + index}>
                     <Link
@@ -203,11 +203,11 @@ export default function Footer() {
           // className={"h-auto w-full *:fill-[url(#footer-logo-gradient)]"}
           className={"h-auto w-full *:fill-white/80"}
         /> */}
-        <div className="flex items-center justify-center w-full">
-          <p className="tracking-tighter leading-[0.98] text-[300px] w-max font-inter">
+        {/* <div className="flex items-center justify-center w-full">
+          <p className="tracking-tighter leading-[0.1.2] text-6xl w-max font-inter">
             Since 1997
           </p>
-        </div>
+        </div> */}
       </div>
       {/* end Neon Anthem Footer Bleed Logo */}
     </footer>

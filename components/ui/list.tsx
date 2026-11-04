@@ -35,7 +35,10 @@ function ListCardTitle({
   ...props
 }: ComponentProps<"h4">) {
   return (
-    <h4 className={cn("text-2xl tracking-tighter", className)} {...props}>
+    <h4
+      className={cn("text-2xl tracking-tighter text-foreground", className)}
+      {...props}
+    >
       {children}
     </h4>
   );
@@ -57,7 +60,7 @@ function ListItem({ className, children, ...props }: ComponentProps<"li">) {
   return (
     <li
       className={cn(
-        "flex items-center gap-1 text-base md:text-lg text-foreground/60 tracking-tighter leading-[0.98] ml-1",
+        "flex items-center gap-1 text-base md:text-lg text-foreground/60 leading-[0.98] ml-1",
         className,
       )}
       {...props}
